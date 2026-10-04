@@ -1,0 +1,9 @@
+node_modules
+.vercel
+.env*.local
+dist
+.DS_Store
+.vscode
+.ideaCNAME
+.env
+.env.local.save
