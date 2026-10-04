@@ -80,7 +80,7 @@ const About = () => {
             <div className="w-full h-full overflow-hidden">
               <img
                 src={profilepic || "/placeholder.svg"}
-                alt="Sunny Patel"
+                alt="Badr El Ghazaoui"
                 className="w-full h-full object-cover"
                 style={{
                   objectFit: "cover",

@@ -426,7 +426,6 @@ const projects = [
   source_code_link: "https://github.com/BadrrElGhazaoui/Moon-Discoveries",
   live_project_link: "https://moondiscoveries.com",
 },
-  {
   // {
   //   name: "FinancialFlow 💸",
   //   description:
@@ -479,33 +478,6 @@ const projects = [
   //   source_code_link: "https://github.com/sunnypatell/enterprise-api-request-tester",
   //   live_project_link: "https://enterprise-api-request-tester.vercel.app/",
   // },
-  {
-    name: "KnifeThrow 🎯",
-    description:
-      "KnifeThrow is a Java Swing arcade game built by hand in Grade 12 across 5,000+ lines of code, long before generative AI was mainstream. It features pick-up-and-play knife throwing with screen shake, particles, sound effects, and animated sprites. Players unlock new knives by hitting score milestones in the in-game shop, dodge incoming enemy knives with scaling difficulty, and trigger an EMP that flips nearby threats. Persistent player profiles, dual control schemes, and a post-run leaderboard.",
-    tags: [
-      {
-        name: "java",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "swing",
-        color: "green-text-gradient",
-      },
-      {
-        name: "maven",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "arcadegame",
-        color: "green-text-gradient",
-      },
-    ],
-    image: knifethrowimage,
-    source_code_link: "https://github.com/sunnypatell/KnifeThrow",
-    live_project_link: "https://github.com/sunnypatell/KnifeThrow",
-  },
-  // {
   //   name: "COVID-19 GTA Cases Data Analysis 🧪",
   //   description:
   //     "A deep dive into ongoing COVID-19 outbreaks in the Greater Toronto Area (GTA), Ontario. Using data from a government-licensed dataset called Outbreaks by Public Health Unit (PHU) to explore trends and patterns in these outbreaks. This data analysis integrates the essential aspects of the data science workflow (Filesize: 3.5 MiB, 62699 lines of raw dataset)",
