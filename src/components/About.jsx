@@ -127,13 +127,13 @@ const About = () => {
 <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.1, 0.75)}>
               <span className="mr-4 text-2xl flex-shrink-0">👨‍💻</span>
               <span>
-                I&apos;m Badr El Ghazaoui — a student at the National School of Commerce and Management of Settat, Morocco, with a passion for IT, cybersecurity, and everything that sparks curiosity.
+                I&apos;m Badr El Ghazaoui — a student at ESTICE - International Management - Université Catholique de Lille, Lille-France, with a passion for IT, cybersecurity, and everything that sparks curiosity.
               </span>
             </motion.li>
             <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.2, 0.75)}>
               <span className="mr-4 text-2xl flex-shrink-0">🎓</span>
               <span>
-                Currently completing my 2-Year Higher Education Degree at ENCG Settat, after graduating with highest honors from my Scientific Baccalaureate in Physics-Chemistry.
+                Currently in my second year of a 2-year higher education degree in International Management at ESTICE. I previously earned honors at ENCG Settat (Morocco) and graduated with highest honors in my Scientific Baccalaureate in Physics-Chemistry.
               </span>
             </motion.li>
             <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.3, 0.75)}>
