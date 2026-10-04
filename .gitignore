@@ -6,3 +6,4 @@ dist
 .vscode
 .ideaCNAME
 .env
+.env.local.save
