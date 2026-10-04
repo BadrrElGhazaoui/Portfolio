@@ -308,34 +308,6 @@ const experiences = [
       "Managed email correspondence and coordinated appointment scheduling.",
     ],
   },
-  {
-    title: "System Support Specialist",
-    company_name: "Mackenzie Health",
-    icon: mackenziehealth,
-    iconBg: "#fff",
-    date: "Jan. 2023 - Aug. 2023",
-    points: [
-      "Overhauled 400+ Surface tablets to bedside iPads, deploying the in-house 'Get Well Soon' app with Intune to hospital systems.",
-      "Developed and refined an admin portal for managing app services, user roles, and subscription expirations.",
-      "Utilized Jamf Pro for MDM, securely deploying iPads/iPhones across clinical departments.",
-      "Implemented Vocera VOIP on iPhones, enabling real-time communication among nurses and ER staff.",
-      "Performed in-room checks, resolved device issues, and collaborated with vendors on bug logs and system updates.",
-    ],
-  },
-  {
-    title: "Tech Sales Associate",
-    company_name: "Staples Canada (Co-op)",
-    icon: staples,
-    iconBg: "#1294C8",
-    date: "Sep. 2020 - Feb. 2021",
-    points: [
-      "Provided specialized support for Windows, Mac, and Linux, performing on-site installations, repairs, and optimizations.",
-      "Streamlined inventory processes by handling SKUs and POs, maintaining a well-organized sales floor.",
-      "Maintained accurate sales and inventory data in IBM AS/400, improving workflows and operational efficiency.",
-      "Resolved complex technical inquiries, delivering tailored solutions that ensured high customer satisfaction.",
-      "Facilitated e-commerce transactions, merging in-store and online channels.",
-    ],
-  },
 ];
 
 
@@ -431,32 +403,7 @@ const extracurricular = [
 ];
 
 const projects = [
-  {
-    name: "ATS Screener 🔍",
-    description:
-      "Free, open-source ATS resume screener that simulates 6 real enterprise platforms (Workday, Taleo, iCIMS, Greenhouse, Lever, SuccessFactors) instead of giving you one made-up score. Each platform models its own parser strictness, keyword strategy, and calibrated thresholds from vendor docs. Dual-mode scoring engine with Gemma 3 27B as the primary LLM and a deterministic rule-based fallback for 100% uptime, plus client-side PDF/DOCX parsing so resume files never leave the browser. Serving 1,500+ users.",
-    tags: [
-      {
-        name: "SvelteKit 2",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Gemini/NLP",
-        color: "green-text-gradient",
-      },
-      {
-        name: "ATS-Simulation",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "Rule-Engine",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: atsscreenerlanding,
-    source_code_link: "https://github.com/sunnypatell/ats-screener",
-    live_project_link: "https://ats-screener.vercel.app",
-  },
+
 {
   name: "Moon Discoveries 🌙",
   description:
@@ -479,110 +426,7 @@ const projects = [
   source_code_link: "https://github.com/BadrrElGhazaoui/Moon-Discoveries",
   live_project_link: "https://moondiscoveries.com",
 },
-    {
-    name: "Axelot ✍️",
-    description:
-      "Axelot is a real-time collaborative writing and knowledge workspace built with Next.js 16, TypeScript, Firebase, TipTap 3, and Yjs. It supports multi-user editing with presence cursors, CRDT-based conflict-free sync over WebRTC, and AI-assisted editing via OpenRouter-backed Next.js API routes. Features secure auth with NextAuth v5, Firestore-backed storage with Firebase custom tokens, a Vercel cron-powered trending algorithm, and production deployment via multi-stage Docker pipeline.",
-    tags: [
-      {
-        name: "Next.js 16",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "TipTap 3 / Yjs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "WebRTC",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "OpenRouter AI",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: axelotlanding,
-    source_code_link: "https://github.com/royce-mathew/axelot",
-    live_project_link: "https://www.axelot.io",
-  },
   {
-    name: "Netdash (Networking Toolbox) 🌐",
-    description:
-      "Netdash is a cross-platform Electron desktop app (macOS, Windows, Linux) with Homebrew distribution, featuring Firebase Auth with Google OAuth and real-time Firestore sync. It includes 15+ networking tools for subnetting, VLSM, IP conflict detection, and multi-vendor configuration generation. Built with RTT measurement via Performance API, TCP port scanning, DNS-over-HTTPS with TTL-aware caching, and RFC-compliant IPv4/IPv6 algorithms with WCAG2.2 accessibility compliance.",
-    tags: [
-      {
-        name: "Electron",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Firebase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "DNS-over-HTTPS",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "WCAG2.2",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: netdashlanding,
-    source_code_link: "https://github.com/sunnypatell/netdash-toolkit/",
-    live_project_link: "https://netdash-toolkit.vercel.app/",
-  },
-  {
-    name: "SecureBank 🏦",
-    description:
-      "SecureBank is a deliberately vulnerable banking simulation built for Capture The Flag (CTF) training, focused on SQL injection and privilege escalation. It features exploit paths including raw query interpolation, single/double URL encoding, and a hidden admin portal to teach secure coding by example. Core features include transaction search, a feedback system, and an admin dashboard with live DB console and security logs. Backed by a normalized SQLite schema with cookie-signature sessions and dockerized challenge docs.",
-    tags: [
-      {
-        name: "CTF",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "SQLi/XSS",
-        color: "green-text-gradient",
-      },
-      {
-        name: "SQLite",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "Docker",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: securebankdashboard,
-    source_code_link: "https://github.com/sunnypatell/securebank-ctf",
-    live_project_link: "https://github.com/sunnypatell/securebank-ctf",
-  },
-  {
-    name: "Sunnify (Spotify Downloader) 🎵",
-    description:
-      "Sunnify is a Spotify downloader that reverse-engineers embed pages to extract track metadata by parsing protected JSON states without authentication. Features a cross-platform PyQt5 desktop client (macOS, Windows, Linux) with thread-safe UI updates, full concurrency through cooperating parallel workers, and 5 audio formats with format-aware metadata writers. Supports playlists with 1000+ tracks via Spotify's internal spclient API and ships as a Homebrew Cask alongside Windows and Linux installers. 100+ stars.",
-    tags: [
-      {
-        name: "Python",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "PyQt5",
-        color: "green-text-gradient",
-      },
-      {
-        name: "yt-dlp",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "Homebrew",
-        color: "blue-text-gradient",
-      },
-    ],
-    image: sunnifyimage,
-    source_code_link: "https://github.com/sunnypatell/sunnify-spotify-downloader",
-    live_project_link: "https://sunnify-spotify-downloader.vercel.app/",
-  },
   // {
   //   name: "FinancialFlow 💸",
   //   description:
