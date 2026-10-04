@@ -11,7 +11,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 
-const CertificationCard = ({ title, icon, type, date, points, credential }) => (
+const CertificationCard = ({ title, icon, type, date, points, credential, pdf }) => (
   <div className="certification-card bg-tertiary p-6 rounded-2xl w-full h-full flex flex-col justify-between no-select">
     <div>
       <div className="relative w-full h-[50px] mb-4">
@@ -35,7 +35,18 @@ const CertificationCard = ({ title, icon, type, date, points, credential }) => (
         ))}
       </ul>
     </div>
-    <div className="mt-4 flex justify-end no-select">
+    <div className="mt-4 flex justify-end gap-2 no-select">
+      {pdf && (
+        <a
+          href={pdf}
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+          className="black-gradient text-secondary py-2 px-4 rounded-lg outline-none w-fit text-[12px] font-bold shadow-md shadow-primary transition-all hover:scale-105 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)] no-select"
+        >
+          PDF
+        </a>
+      )}
       <a
         href={credential}
         target="_blank"
@@ -116,7 +127,7 @@ const Extracurricular = () => {
             stretch: 0,
             depth: 100,
             modifier: 1,
-            slideShadows: false, // Disable slide shadows entirely
+            slideShadows: false,
           }}
           pagination={{
             clickable: true,
@@ -132,7 +143,6 @@ const Extracurricular = () => {
               slidesPerView: 3,
             }
           }}
-         
         >
           {extracurricular.map((certification, index) => (
             <SwiperSlide key={`certification-${index}`}>

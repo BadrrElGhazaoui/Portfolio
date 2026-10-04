@@ -1,7 +1,22 @@
 import {
+  estice,
   mobile,
+  dubai,
+  FoundationsOfCybersec,
+  uae,
+  Hackviser,
+  hack,
+  tutor,
+  IntroductiontoCybersecurityCareers,
+  PlayItSafe_ManageSecurityRisks,
+  ConnectandProtect_NetworksandNetworkSecurity,
+  ToolsoftheTrade_LinuxandSQL,
+  Assets_Threats_andVulnerabilities,
+  moondiscoveries,
   backend,
   web,
+  lecedre,
+  encgsettat,
   fullstack,
   javascript,
   java,
@@ -34,21 +49,19 @@ import {
   // wordsearch,
   powershell,
   cisco,
-  connectwise,
   virtualbox,
   kalilinux,
   wireshark,
   nmap,
-  // metasploit,  // unused - not in Tech.jsx
+  metasploit,
+  trojan,
   johntheripper,
-  // hydra,       // unused - not in Tech.jsx
-  // aircrackng,  // unused - not in Tech.jsx
+  hydra,       // unused - not in Tech.jsx
+  aircrackng,  // unused - not in Tech.jsx
   photoshop,
   premiere,
   cinema4d,
   // blender,  // unused - not in Tech.jsx
-  connectwisecert,
-  awsdbcert,
   // financialflowimage,
   // enterpriseapitester,
   atsscreenerlanding,
@@ -91,48 +104,61 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Software Developer",
+    title: "IT & Cybersecurity Enthusiast",
     icon: fullstack,
   },
   {
-    title: "Systems Infrastructure",
+    title: "Writer & Blogger",
     icon: backend,
   },
   {
-    title: "Cloud Automation",
+    title: "Cinema & Music Lover",
     icon: mobile,
   },
   {
-    title: "Workflows",
+    title: "Curious Mind",
     icon: web,
   },
 ];
 
 const education = [
   {
-    title: "Honours Computer Science (H. BSc)",
-    company_name: "Ontario Tech University, Oshawa, ON",
-    icon: otu,
+    title: "Scientific Baccalaureate, Physics-Chemistry major",
+    company_name: "Groupe Scolaire Le Cedre",
+    icon: lecedre,
     iconBg: "#fff",
-    date: "2022 - Present",
+    date: "2012-2024",
     points: [
-      "President's List - Winter 2025",
-      "Dean's Honours List - Fall 2024",
+      "With highest honors - Regional Exam 2023",
+      "With honors - National Exam 2024",
       // "Courses undertaken: Data Structures and Algorithms, OOP, REST API, Software Design, Python Data Analysis, Discrete Mathematics, Computer Architecture, Operating Systems, PostgreSQL.",
+    ],
+  }, 
+  {
+    title: "2-Year Higher Education Degree",
+    company_name: "National Schools of Commerce and Management of Settat",
+    icon: encgsettat,
+    iconBg: "#fff",
+    date: "2024-2026",
+    points: [
+      "1st Year - Grade : C+ ",
+      "Passed National Competitive Exam After Baccalaureate ",
     ],
   },
   {
-    title: "High School",
-    company_name: "Richmond Hill High School, ON",
-    icon: rhhs,
+    title: "Bachelor's Degree (L2) in International Management",
+    company_name: "ESTICE - International Management - Université Catholique de Lille",
+    icon: estice,
     iconBg: "#fff",
-    date: "2018-2022",
+    date: "2026-2027",
     points: [
-      "Ontario Scholar",
-      "12th Grade: 96%",
+      "Pursuing a Licence in International Management within a multicultural, English/French bilingual program",
+      // "Active participation in student associations and international exchange initiatives",
     ],
   },
 ];
+
+  
 
 const technologies = [
   {
@@ -199,10 +225,6 @@ const itTools = [
     icon: cisco,
   },
   {
-    name: "ConnectWise",
-    icon: connectwise,
-  },
-  {
     name: "VirtualBox",
     icon: virtualbox,
   },
@@ -221,22 +243,22 @@ const cybersecurityTools = [
     name: "Nmap",
     icon: nmap,
   },
-  // {
-  //   name: "Metasploit",
-  //   icon: metasploit,
-  // },
+   {
+     name: "Metasploit",
+     icon: metasploit,
+   },
   {
     name: "John the Ripper",
     icon: johntheripper,
   },
-  // {
-  //   name: "Hydra",
-  //   icon: hydra,
-  // },
-  // {
-  //   name: "Aircrack-ng",
-  //   icon: aircrackng,
-  // },
+   {
+     name: "Hydra",
+     icon: hydra,
+   },
+   {
+     name: "Aircrack-ng",
+     icon: aircrackng,
+   },
 ];
 
 const designTools = [
@@ -260,31 +282,30 @@ const designTools = [
 
 const experiences = [
   {
-    title: "Software Developer",
-    company_name: "IBM",
-    icon: ibm,
+    title: "Independent Tutor",
+    company_name: "Self-employed — Universities across Morocco",
+    icon: tutor,
     iconBg: "#fff",
-    date: "Jan. 2026 - Present",
+    date: "Jan. 2023 - Present",
     points: [
-      "Built and shipped features across the full stack of an AI-powered sales enablement platform, spanning backend APIs, task orchestration, database migrations, frontend, and cloud infrastructure.",
-      "Integrated watsonx foundation models into platform workflows, including RAG pipelines, real-time LLM-driven internationalization, vector-based semantic search, and prompt engineering for AI-assisted content tooling.",
-      "Led multi-repository integrations across internal platform services, designing shared API contracts and decoupled dependencies built for maintainable service-to-service evolution, consumed by engineering teams across the organization.",
-      "Deployed to IBM Cloud with full operational visibility, shipping feature releases, performance fixes, outage resolution, and data migrations across staging and production environments.",
-      "Collaborated with non-technical stakeholders to scope, build, and iterate on client-facing tailored AI tools and internal workflows, translating business requirements into delivered systems with continuous revision cycles.",
+      "Tutored students in Cybersecurity and Programming modules across multiple Moroccan universities: Al Akhawayn University (supported Master's students on cybersecurity topics tied to their Deloitte-affiliated program), FST Settat (Génie Informatique), EST Berrechid (Génie Informatique), ENSA Safi, ENSAM Casablanca, and EMSI Casablanca (Cycle Ingénierie Informatique et Réseaux).",
+      "Delivered one-on-one and small-group sessions, breaking down complex concepts in networking, security, and coding into clear, practical explanations tailored to each student's level.",
+      "Built long-term relationships with students, many of whom return for continued support — a personal, mentorship-style approach rather than a classroom lecture format.",
+      "Still actively tutoring today, alongside academic and professional work.",
     ],
   },
   {
-    title: "IT Technician",
-    company_name: "Canada's Wonderland",
+    title: "IT & Accounting Intern",
+    company_name: "Petro Pièces SARL, Casablanca",
     icon: wonderland,
     iconBg: "#fff",
-    date: "Jun. 2023 - Jan. 2026",
+    date: "May 2025 - Jul. 2025",
     points: [
-      "Provisioned Windows PCs with MDT, and deployed scripting via PowerShell and ConnectWise.",
-      "Managed AD accounts to propagate ACLs and unified access across in-house apps, Exchange, and SharePoint.",
-      "Configured Cisco CUCM, Unity, and Finesse for stable call routing and voicemail services.",
-      "Handled switch patching and VLAN/routing via PuTTY & SecureCRT, ensuring stable network performance.",
-      "Deployed Oracle POS/KDS/Debit solutions (EMC, Simphony), tracking updates in Jira & Confluence.",
+      "Supported day-to-day accounting operations for a hydraulic parts, machining, and equipment company.",
+      "Managed document organization and archiving across departments.",
+      "Handled data entry and reporting using Microsoft Word and Excel.",
+      "Served as a first point of contact, welcoming and directing visitors.",
+      "Managed email correspondence and coordinated appointment scheduling.",
     ],
   },
   {
@@ -320,83 +341,92 @@ const experiences = [
 
 const extracurricular = [
   {
-    title: "IBM RAG and Agentic AI",
+    title: "Foundations of Cybersecurity",
     type: "Professional Certificate",
-    icon: ibm,
+    icon:  google,
     iconBg: "#052FAD",
-    date: "Feb 2026",
+    date: "June 2026",
     points: [
-      "RAG Pipelines, Vector Databases, Agentic AI, LangChain, LangGraph, CrewAI, AutoGen, BeeAI, MCP, Multimodal Generative AI",
+     "Cybersecurity, Information Security, Network Security, Risk Management, Security Frameworks, Cybersecurity Ethics and Guidelines, ",
     ],
-    credential: "https://coursera.org/verify/professional-cert/S9ENFFEVMD37",
+    credential: "https://coursera.org/share/10b8139e609fed53f14b2480f98c58ac",
+    pdf: FoundationsOfCybersec,
   },
   {
-    title: "Microsoft Full-Stack Developer",
-    type: "Professional Certificate",
-    icon: microsoft,
-    iconBg: "#000000",
-    date: "Feb 2026",
-    points: [
-      "C#, .NET 10, Blazor WebAssembly, ASP.NET Core Web API, SQL Server, JWT Auth, RBAC, CI/CD, Entity Framework Core",
-    ],
-    credential: "https://coursera.org/verify/professional-cert/MSK7DL3J65TJ",
-  },
-  {
-  title: "GitHub Copilot Intermediate (GH-300)",
-  type: "Professional Certificate",
-  icon: microsoft,
-  iconBg: "#000000",
-  date: "Issued: Oct 13, 2025 - Expires: Oct 13, 2027",
-  points: [
-    "Prompt Engineering, Copilot Chat Architecture, Policy Enforcement, Enterprise AI Integration, Secure Development Workflows"
-  ],
-  credential: "https://learn.microsoft.com/api/credentials/share/en-us/sunnypatell/D07D3774894C605?sharingId=6255C292987551EF",
-  },
-  {
-    title: "MongoDB Python Developer Path",
-    type: "Proof of Completion",
-    icon: mongodb,
-    iconBg: "#000000",
-    date: "Feb 2025",
-    points: ["PyMongo, NoSQL Schema Design, Data Aggregation, MongoDB Query Optimization"],
-    credential: "https://learn.mongodb.com/c/tf2DSC7hTcyM3NBZjkLPoA",
-  },
-  {
-    title: "Github Foundations",
-    type: "Professional Certificate",
-    icon: github,
-    iconBg: "#000000",
-    date: "Issued: Sep 2024 - Expires: Sep 2027",
-    points: ["Version Control, Git, Actions, CI/CD, Repository Management, SAP Workflow"],
-    credential: "https://www.credly.com/badges/b6f69785-2da8-447e-b02c-3350bf9af803",
-  },
-  {
-    title: "Certified Enterprise Scripting Architect",
-    type: "Automate | Connectwise University",
-    icon: connectwise,
-    iconBg: "#748C7B",
-    date: "Jul 2024",
-    points: ["RMM, MDM, Powershell, Scripting, Windows Server, Enterprise Architecture, Query Optimization"],
-    credential: connectwisecert,
-  },
-  {
-    title: "Google IT Automation With Python",
+    title: "Play It Safe: Manage Secu rity Risks",
     type: "Professional Certificate",
     icon: google,
-    iconBg: "#050C18",
-    date: "Mar 2023",
+    iconBg: "#000000",
+    date: "Jul 2026",
     points: [
-      "Configuration Management, Automation, Google Cloud Platform (GCP), Cloud Servers and VM's, Version Control Tools, Automation.",
+      "Cybersecurity, Information Security, Risk Management, Security Risk Assessment, Security Controls, Security Frameworks, Governance, Risk, and Compliance (GRC), Security Policies and Procedures, NIST Cybersecurity Framework (CSF)",
     ],
-    credential: "https://www.coursera.org/account/accomplishments/specialization/certificate/82SZFUWF4B3T",
+    credential: "https://coursera.org/share/e12d5e6f59987f976d02754abb45c52f",
+    pdf: PlayItSafe_ManageSecurityRisks,
   },
   {
-    title: "WHMIS (Worker Health and Safety)",
-    type: "Government Workforce Requirement",
-    icon: whmis,
+  title: "Connect and Protect: Networks and Network Security",
+  type: "Professional Certificate",
+  icon: google,
+  iconBg: "#000000",
+  date: "Jul 2026",
+  points: [
+    "Network Security, Computer Networking, TCP/IP, Network Protocols, Network Architecture, Network Traffic Analysis, Network Defense, Firewalls, Intrusion Detection and Prevention Systems (IDS/IPS),"
+  ],
+  credential: "https://coursera.org/share/25c63bec0a669c733cbc9a3eacb7de5b",
+  pdf: ConnectandProtect_NetworksandNetworkSecurity,
+  },
+  {
+    title: "Tools of the Trade: Linux and SQL",
+    type: "Professional Certificate",
+    icon: google,
+    iconBg: "#000000",
+    date: "Jul 2026",
+    points: ["Linux, SQL, Command-Line Interface (CLI), Bash, File System Management, Database Management, SQL Queries, Log Analysis, System Administration, Cybersecurity Tools."],
+    credential: "https://coursera.org/share/66c719fbdf2355285d74a83893a42e2a",
+    pdf: ToolsoftheTrade_LinuxandSQL,
+  },
+  {
+    title: "Assets, Threats, and Vu lnerabilities",
+    type: "Professional Certificate",
+    icon: google,
+    iconBg: "#000000",
+    date: "Jul 2026",
+    points: ["Asset Management, Threat Analysis, Vulnerability Assessment, Risk Assessment, Attack Vectors, Threat Modeling, Security Controls, Vulnerability Management, Incident Response, Cybersecurity Fundamentals."],
+    credential: "https://coursera.org/share/e15adc52a4e472fb5b9de3234670c4de",
+    pdf: Assets_Threats_andVulnerabilities,
+  },
+  {
+    title: "Introduction to Cybersecurity Careers",
+    type: "Professional Certificate",
+    icon: ibm,
+    iconBg: "#748C7B",
+    date: "Jul 2026",
+    points: ["Cybersecurity, Information Security, Security Operations, Risk Management, Threat Analysis, Network Security, Incident Response, Security Awareness,"],
+    credential: "https://coursera.org/share/adbd7c1ee5da77363fe41753c60771da",
+    pdf: IntroductiontoCybersecurityCareers,
+  },
+  {
+    title: "Certified Cybersecurity Foundations ( CORE )",
+    type: "Professional Certificate",
+    icon: hack,
+    iconBg: "#050C18",
+    date: "Jul 2026",
+    points: [
+      "Cybersecurity Foundations, Threat and Incident Management, Network and Web Security Basics, Generative AI Security, OSINT (Open-Source Intelligence),",
+    ],
+    credential: "https://hackviser.com/verify?id=HV-CORE-PDOOZNLW",
+    pdf: Hackviser,
+  },
+  {
+    title: "One Million Prompters ",
+    type: "Professional Certificate by the Dubai Centre for Artificial Intelligence (DCAI)",
+    icon: uae,
     iconBg: "#CCCFD8",
-    date: "Sep 2020",
-    points: ["Hazard Awareness, Legal Compliance, Personal Protection, Accident Prevention"],
+    date: "Aug 2026",
+    points: ["Cybersecurity Fundamentals, Threat Detection, Risk Management, Network Protection, Security Awareness"],
+    credential: "https://omp.dub.ai/certificate/euavGqkKtyEw",
+    pdf: dubai,
   },
 ];
 
@@ -427,6 +457,28 @@ const projects = [
     source_code_link: "https://github.com/sunnypatell/ats-screener",
     live_project_link: "https://ats-screener.vercel.app",
   },
+{
+  name: "Moon Discoveries 🌙",
+  description:
+    "Personal blog where I write about the things that move me — songs, movies, books, and IT. Deep dives into Moroccan cinema, Arabic music, French literature, and cybersecurity. Built with Jekyll and Beautiful Jekyll theme, hosted on GitHub Pages.",
+  tags: [
+    {
+      name: "Jekyll",
+      color: "blue-text-gradient",
+    },
+    {
+      name: "GitHub Pages",
+      color: "green-text-gradient",
+    },
+    {
+      name: "HTML/CSS",
+      color: "pink-text-gradient",
+    },
+  ],
+  image: moondiscoveries,
+  source_code_link: "https://github.com/BadrrElGhazaoui/Moon-Discoveries",
+  live_project_link: "https://moondiscoveries.com",
+},
     {
     name: "Axelot ✍️",
     description:

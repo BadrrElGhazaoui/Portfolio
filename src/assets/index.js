@@ -1,45 +1,68 @@
 import profilepic from './pfp.png';
-
+export { default as lecedre } from "./lecedre.png";
+export { default as encgsettat } from "./encgsettat.png";
+import ibm from "./company/ibm.svg";
+import IntroductiontoCybersecurityCareers from "./IntroductiontoCybersecurityCareers.pdf";
+export { IntroductiontoCybersecurityCareers };
+import dubai from "./dubai.pdf";
+export { dubai };
+import uae from "./uae.png";
+export { uae };
+import estice from "./estice.svg";
+export { estice };
+import Hackviser from "./Hackviser.pdf";
+export { Hackviser };
 import logo from "./logo0.png";
+import moondiscoveries from "./moondiscoveries.png";
 import backend from "./backend.png";
+import html from "./tech/html.png";
 import mobile from "./mobile.png";
 import web from "./web.png";
+import FoundationsOfCybersec from "./FoundationsOfCybersec.pdf";
+export { FoundationsOfCybersec };
+import PlayItSafe_ManageSecurityRisks from "./PlayItSafe_ManageSecurityRisks.pdf";
+export { PlayItSafe_ManageSecurityRisks };
+import ConnectandProtect_NetworksandNetworkSecurity from  "./ConnectandProtect_NetworksandNetworkSecurity.pdf";
+export { ConnectandProtect_NetworksandNetworkSecurity };
+import ToolsoftheTrade_LinuxandSQL from "./ToolsoftheTrade_LinuxandSQL.pdf";
+export { ToolsoftheTrade_LinuxandSQL };
+import Assets_Threats_andVulnerabilities from "./Assets_Threats_andVulnerabilities.pdf";
+export { Assets_Threats_andVulnerabilities };
 import fullstack from "./creator.png";
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
-
+import hack from "./hack.svg";
+import tor from "./tech/tor.svg"
 import docker from "./tech/docker.png";
 // import figma from "./tech/figma.png";  // unused - not displayed
-// import mysql from "./tech/mysql.png";  // unused - not displayed
+import mysql from "./tech/mysql.png"; 
 // import css from "./tech/css.png";      // unused - not displayed
 // import git from "./tech/git.png";      // unused - not displayed
-// import html from "./tech/html.png";    // unused - not displayed
 import javascript from "./tech/javascript.png";
 import java from "./tech/java.png";
 import ubuntu from "./tech/ubuntu.png";
 import reactjs from "./tech/reactjs.png";
 import postgresql from "./tech/postgresql.png";
 import mongodb from "./tech/mongodb.png";
-// import linux from "./tech/linux.png";  // unused - not displayed
+import linux from "./tech/linux.png"; 
 import tailwind from "./tech/tailwind.png";
 import python from "./tech/python.png"
 import cplusplus from "./tech/c++.svg"
 import typescript from "./tech/typescript.png"
 import threejs from "./tech/threejs.svg"
-
 import azure from "./tech/azure.png";
 import powershell from "./tech/powershell.svg"
 import cisco from "./tech/cisco.svg"
-import connectwise from "./tech/connectwise.png"
 import virtualbox from "./tech/virtualbox.png"
 import kalilinux from "./tech/kali_linux.svg"
 import wireshark from "./tech/wireshark.png"
 import nmap from "./tech/nmap.svg"
-// import metasploit from "./tech/metasploit.svg"  // unused - not in Tech.jsx
+import metasploit from "./tech/metasploit.svg" 
+import trojan from "./tech/trojan.svg" 
 import johntheripper from "./tech/johntheripper.svg"
-// import hydra from "./tech/hydra.svg"  // unused - not in Tech.jsx
-// import aircrackng from "./tech/aircrackng.svg"  // unused - not in Tech.jsx
+import hydra from "./tech/hydra.svg"  // unused - not in Tech.jsx
+import aircrackng from "./tech/aircrackng.svg"  // unused - not in Tech.jsx
 
 import photoshop from "./tech/photoshop.svg"
 import premiere from "./tech/premiere.svg"
@@ -49,7 +72,7 @@ import cinema4d from "./tech/cinema4d.png"
 
 import otu from "./company/otu.png"
 import rhhs from "./company/rhhs.jpg"
-import wonderland from "./company/wonderland.jpg"
+import wonderland from "./company/wonderland.svg"
 import mackenziehealth from "./company/mackenziehealth.png"
 import privcurity from "./company/privcurity.jpg"
 import staples from "./company/staples.png"
@@ -57,7 +80,7 @@ import google from "./company/google.png"
 import whmis from "./company/whmis.png"
 import aws from "./tech/aws.png";
 import microsoft from "./company/microsoft.png";
-import ibm from "./company/ibm.svg";
+import tutor from "./company/tutor.svg";
 
 import axelotlanding from "./axelotlanding.png"
 import netdashlanding from "./netdashlanding.png"
@@ -72,24 +95,28 @@ import atsscreenerlanding from "./atsscreenerlanding.png"
 // import enterpriseapitester from "./enterpriseapiui.png"
  
 // Use the stable route; dev/prod redirect to /resume/<basename>
-const resume = "/resume";
-import awsdbcert from "./AWS Database Specialty Certified - Sunny Jayendra Patel.jpg"
-import connectwisecert from "./Connectwise-Scripting-Certification.pdf"
+const resume = "/resume.pdf";
 
 export {
   logo,
+  html,
+  linux,
+  mysql,
+  trojan,
   backend,
   mobile,
   web,
   fullstack,
   github,
   menu,
+  hack,
   close,
   // css,
   // git,
   // html,
   javascript,
   java,
+  tor,
   ubuntu,
   reactjs,
   // linux,
@@ -99,6 +126,7 @@ export {
   aws,
   otu,
   rhhs,
+  moondiscoveries,
   wonderland,
   mackenziehealth,
   privcurity,
@@ -117,22 +145,19 @@ export {
   typescript,
   powershell,
   cisco,
-  connectwise,
   virtualbox,
   kalilinux,
   wireshark,
   nmap,
-  // metasploit,  // unused - not in Tech.jsx
+  metasploit, 
   johntheripper,
-  // hydra,  // unused - not in Tech.jsx
-  // aircrackng,  // unused - not in Tech.jsx
+  hydra,  // unused - not in Tech.jsx
+  aircrackng,  // unused - not in Tech.jsx
   photoshop,
   premiere,
   cinema4d,
   // blender,  // unused - not in Tech.jsx
   resume,
-  awsdbcert,
-  connectwisecert,
   // financialflowimage,
   atsscreenerlanding,
   // enterpriseapitester,
@@ -144,5 +169,6 @@ export {
   azure,
   staples,
   microsoft,
-  ibm
+  tutor,
+  ibm,
 };

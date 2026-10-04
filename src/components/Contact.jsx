@@ -2,10 +2,8 @@
 
 import { useRef, useState, useCallback, useEffect } from "react"
 import { motion } from "framer-motion"
-import emailjs from "@emailjs/browser"
 import { Toaster, toast } from "react-hot-toast"
 import Confetti from "react-confetti"
-import ReCAPTCHA from "react-google-recaptcha"
 
 import { styles } from "../styles"
 import { EarthCanvas } from "./canvas"
@@ -14,11 +12,10 @@ import { slideIn } from "../utils/motion"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faEnvelope, faComment, faPaperPlane, faSpinner, faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 
 const Contact = () => {
   const formRef = useRef()
-  const captchaRef = useRef()
-  const [captchaToken, setCaptchaToken] = useState(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -75,33 +72,23 @@ const Contact = () => {
       return
     }
 
-    if (!captchaToken) {
-      toast("Hold up! Gotta make sure you're not a spam bot, checkmark the CAPTCHA! 🧠🤖", {
-        icon: "🛡️",
-        duration: 3500,
-        position: "bottom-right",
-      })
-      return
-    }
-
     setLoading(true)
 
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Sunny Patel",
-          from_email: form.email,
-          to_email: "sunnypatel124555@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_EMAIL_JS_ACCESS_TOKEN,
-      )
-      .then(
-        () => {
-          setLoading(false)
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        subject: `New message from ${form.name} via portfolio`,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setLoading(false)
+        if (data.success) {
           setSuccess(true)
           setForm({ name: "", email: "", message: "" })
           toast.success("Message sent successfully!", {
@@ -109,22 +96,22 @@ const Contact = () => {
             position: "bottom-right",
           })
           setShowConfetti(true)
-          setCaptchaToken(null)
-          captchaRef.current.reset()
           setTimeout(() => {
             setSuccess(false)
             setShowConfetti(false)
           }, 5000)
-        },
-        (error) => {
-          setLoading(false)
-          console.error(error)
-          toast.error("Something went wrong. Please try again.", {
-            duration: 3000,
-            position: "bottom-right",
-          })
-        },
-      )
+        } else {
+          throw new Error(data.message)
+        }
+      })
+      .catch((error) => {
+        setLoading(false)
+        console.error(error)
+        toast.error("Something went wrong. Please try again.", {
+          duration: 3000,
+          position: "bottom-right",
+        })
+      })
   }
 
   const handleConfettiComplete = useCallback(() => {
@@ -149,12 +136,12 @@ const Contact = () => {
       >
         <div className="flex justify-between items-center mb-4">
           <p className={styles.sectionSubText}>Get in touch</p>
-          <a
-            href="tel:+14372161611"
-            className="text-purple-400 hover:text-purple-300 transition-all duration-300 flex items-center gap-2 hover:gap-3 group"
-          >
+          
+          <a href="tel:+14372161611"
+          className="text-purple-400 hover:text-purple-300 transition-all duration-300 flex items-center gap-2 hover:gap-3 group"
+            >
             <FontAwesomeIcon icon={faPhone} className="group-hover:rotate-12 transition-transform duration-300" />
-            <span className="font-medium">(437) 216-1611</span>
+            <span className="font-medium">+33776450955</span>
           </a>
         </div>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
@@ -204,22 +191,10 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Hey Sunny, love the website! I'd like to chat about some opportunities you might like! 🎉"
+              placeholder="Hey Badr, love the website! I'd like to chat about some opportunities you might like! 🎉"
               className="bg-black-100/50 backdrop-blur-sm py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none border-2 border-white/20 font-medium transition-all duration-300 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 focus:bg-black-100/70 hover:border-white/30 resize-none"
             />
           </label>
-
-          <div className="flex justify-center">
-            <div className="rounded-lg overflow-hidden shadow-lg">
-              <ReCAPTCHA
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                onChange={(token) => setCaptchaToken(token)}
-                theme="dark"
-                ref={captchaRef}
-              />
-            </div>
-          </div>
-          <span className="text-xs text-gray-400 text-center -mt-4">Protected by reCAPTCHA Enterprise. ⚔️</span>
 
           <button
             type="submit"
@@ -247,6 +222,42 @@ const Contact = () => {
               </>
             )}
           </button>
+
+          <div className="flex items-center gap-3 mt-2">
+            <div className="h-px flex-1 bg-white/10" />
+            <span className="text-xs text-gray-400">or reach me directly</span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
+          <div className="flex justify-center gap-6">
+           
+              <a
+                href="https://wa.me/+33776450955"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-green-500 hover:text-green-400 hover:scale-110 transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
+            </a>
+            
+              <a
+                href="https://instagram.com/badr.elghazaoui"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-pink-500 hover:text-pink-400 hover:scale-110 transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faInstagram} className="text-2xl" />
+            </a>
+            
+              <a
+                href="mailto:badr@badrelghazaoui.com"
+              aria-label="Email"
+              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-purple-500 hover:text-purple-400 hover:scale-110 transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />
+            </a>
+          </div>
         </form>
       </motion.div>
 

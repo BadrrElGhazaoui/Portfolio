@@ -84,7 +84,6 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='w-9 h-9 object-contain' />
           <motion.p 
             className='text-white text-[18px] font-bold cursor-pointer flex items-center'
             initial={{ opacity: 0, y: -20 }}
@@ -96,14 +95,10 @@ const Navbar = () => {
               style={{
                 fontFamily: "'Dancing Script', cursive",
                 fontSize: "26px",
-                background: "linear-gradient(90deg, #915EFF, #00BFFF)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textFillColor: "transparent",
+                color: "white",
               }} 
             >
-              {"</"}Sunny Patel{">"}
+              {"</"}Badr El Ghazaoui{">"}
             </span>
           </motion.p>
         </Link>

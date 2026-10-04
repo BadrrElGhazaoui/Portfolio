@@ -7,6 +7,9 @@ import { textVariant } from "../utils/motion";
 // Import all assets
 import {
   python,
+  trojan,
+  tor,
+  metasploit,
   javascript,
   java,
   cplusplus,
@@ -22,11 +25,14 @@ import {
   powershell,
   azure,
   cisco,
-  connectwise,
   virtualbox,
   kalilinux,
   wireshark,
+  hydra,
   nmap,
+  html,
+  mysql,
+  linux,
   johntheripper,
   photoshop,
   premiere,
@@ -35,6 +41,8 @@ import {
 
 const programming = [
   { name: "Python", icon: python },
+  { name: "html", icon: html }, 
+  { name: "mysql", icon: mysql },
   { name: "Java", icon: java },
   { name: "C++", icon: cplusplus },
   { name: "JavaScript", icon: javascript },
@@ -49,15 +57,19 @@ const programming = [
 
 const itTools = [
   { name: "AWS", icon: aws },
+  { name: "Tor", icon: tor, link: "https://moondiscoveries.com/2026-05-21-Tor/" },
   { name: "Ubuntu", icon: ubuntu },
+  { name: "Metasploit", icon: metasploit }, 
   { name: "PowerShell", icon: powershell },
   { name: "Azure", icon: azure },
   { name: "Cisco", icon: cisco },
-  { name: "ConnectWise", icon: connectwise },
+  { name: "Linux", icon: linux , link : "https://www.scribd.com/document/1060878547/Kali-Linux-Cheat-Sheet" },
   { name: "VirtualBox", icon: virtualbox },
-  { name: "Kali Linux", icon: kalilinux },
+  { name: "Kali Linux", icon: kalilinux, link: "https://moondiscoveries.com/2026-05-22-Kali-Linux/" },
+  { name: "Hydra", icon: hydra },
+  { name: "Trojan", icon: trojan, link:"https://moondiscoveries.com/2026-06-01-Trojans/" },
   { name: "Wireshark", icon: wireshark },
-  { name: "Nmap", icon: nmap },
+  { name: "Nmap", icon: nmap, link: "https://moondiscoveries.com/2026-04-30-Nmap/" },
   { name: "John the Ripper", icon: johntheripper },
 ];
 
@@ -192,8 +204,21 @@ const Tech = () => {
                 animate="visible"
                 whileHover="hover"
               >
-                <img src={tech.icon} alt={tech.name}  style={{ userSelect: "none" }} draggable="false"/>
-              </motion.div>
+                {tech.link ? (
+    
+      <a href={tech.link}
+      target="_blank"
+      title= {tech.name}
+      rel="noopener noreferrer" 
+      style={{ display: "flex",  alignItems: "center",
+      justifyContent: "center", width: "100%", height: "100%" }}
+    >
+      <img src={tech.icon} alt={tech.name} style={{ userSelect: "none" }} draggable="false"/>
+    </a>
+  ) : (
+    <img src={tech.icon} alt={tech.name} style={{ userSelect: "none" }} draggable="false"/>
+  )}
+</motion.div>
             ))}
           </div>
         ))}

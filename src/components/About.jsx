@@ -84,7 +84,7 @@ const About = () => {
                 className="w-full h-full object-cover"
                 style={{
                   objectFit: "cover",
-                  objectPosition: "50% 50%",
+                  objectPosition: "50% 30%",
                 }}
               />
             </div>
@@ -103,7 +103,7 @@ const About = () => {
               className="px-6 py-3 font-semibold text-white bg-gradient-to-r from-blue-400 to-blue-600 rounded-md shadow-[0_5px_0_0_rgba(0,0,0,0.6)] transition-all duration-100 ease-in-out hover:shadow-[0_3px_0_0_rgba(0,0,0,0.6)] hover:translate-y-[2px] active:translate-y-1 active:shadow-none select-none"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("https://www.linkedin.com/in/sunny-patel-30b460204/", "_blank")}
+              onClick={() => window.open("https://www.linkedin.com/in/badr-el-ghazaoui", "_blank")}
             >
               LinkedIn
             </motion.button>
@@ -112,7 +112,7 @@ const About = () => {
               className="px-6 py-3 font-semibold text-white bg-gradient-to-r from-gray-600 to-gray-800 rounded-md shadow-[0_5px_0_0_rgba(0,0,0,0.6)] transition-all duration-100 ease-in-out hover:shadow-[0_3px_0_0_rgba(0,0,0,0.6)] hover:translate-y-[2px] active:translate-y-1 active:shadow-none select-none"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("https://github.com/sunnypatell", "_blank")}
+              onClick={() => window.open("https://github.com/BadrrElGhazaoui", "_blank")}
             >
               GitHub
             </motion.button>
@@ -124,36 +124,29 @@ const About = () => {
             variants={fadeIn("", "", 0.1, 1)}
             className="mt-4 text-secondary text-[17px] max-w-3xl space-y-6 list-none"
           >
-            <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.1, 0.75)}>
+<motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.1, 0.75)}>
               <span className="mr-4 text-2xl flex-shrink-0">👨‍💻</span>
               <span>
-                I&apos;m a Software Engineer with over 4 years of experience in software development and cloud
-                technologies.
+                I&apos;m Badr El Ghazaoui — a student at the National School of Commerce and Management of Settat, Morocco, with a passion for IT, cybersecurity, and everything that sparks curiosity.
               </span>
             </motion.li>
             <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.2, 0.75)}>
               <span className="mr-4 text-2xl flex-shrink-0">🎓</span>
               <span>
-                Currently working toward my Honours Bachelor of Science in Computer Science at Ontario Tech University,
-                I&apos;m all about building reliable, scalable software that makes a difference.
+                Currently completing my 2-Year Higher Education Degree at ENCG Settat, after graduating with highest honors from my Scientific Baccalaureate in Physics-Chemistry.
               </span>
             </motion.li>
             <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.3, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">🛠</span>
+              <span className="mr-4 text-2xl flex-shrink-0">🔐</span>
               <span>
-                From full-stack development to cloud-based solutions, I&apos;ve led enterprise-level projects that
-                streamline operations and deliver real impact.
+                From Kali Linux and Trojan viruses to the Tor network and Metasploit — I explore cybersecurity the way others explore music: with obsession and wonder.
               </span>
             </motion.li>
             <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.4, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">🔧</span>
+              <span className="mr-4 text-2xl flex-shrink-0">🌙</span>
               <span>
-                I enjoy automating workflows, optimizing systems, and turning complex challenges into real results. 📈
+                I write about everything that moves me — cinema, Arabic music, books, games, and IT — on my blog Moon Discoveries. Ancient nomads named the full moon Badr. I try to live up to it.
               </span>
-            </motion.li>
-            <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.5, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">💡</span>
-              <span>I&apos;m always curious and constantly learning.</span>
             </motion.li>
           </motion.ul>
         </motion.div>
