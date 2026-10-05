@@ -1,5 +1,7 @@
 import profilepic from './pfp.png';
 export { default as lecedre } from "./lecedre.png";
+export { default as unuias } from "./unu-ias.png";
+export { default as netzero101 } from "./net-zero-101.pdf";
 export { default as encgsettat } from "./encgsettat.png";
 import ibm from "./company/ibm.svg";
 import IntroductiontoCybersecurityCareers from "./IntroductiontoCybersecurityCareers.pdf";

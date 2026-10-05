@@ -1,5 +1,7 @@
 import {
   estice,
+  unuias,
+  netzero101,
   mobile,
   dubai,
   FoundationsOfCybersec,
@@ -323,6 +325,15 @@ const extracurricular = [
     ],
     credential: "https://coursera.org/share/10b8139e609fed53f14b2480f98c58ac",
     pdf: FoundationsOfCybersec,
+  },
+   {
+    title: "Net Zero 101: What, Why and How",
+    type: "Certificate of Completion by the United Nations University – Institute for the Advanced Study of Sustainability (UNU-IAS)",
+    icon: unuias,
+    iconBg: "#FFFFFF",
+    date: "Oct 2026",
+    points: ["Net Zero, Climate Change, Sustainability, Greenhouse Gas Emissions, Climate Action"],
+    pdf: netzero101,
   },
   {
     title: "Play It Safe: Manage Secu rity Risks",
