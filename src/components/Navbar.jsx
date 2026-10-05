@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo } from "../assets";
 
 const Navbar = () => {
   const [active, setActive] = useState("");

@@ -1,4 +1,6 @@
 import profilepic from './pfp.png';
+export { default as att } from "./arms-trade-treaty.pdf";
+export { default as unitar } from "./unitar.png";
 export { default as lecedre } from "./lecedre.png";
 export { default as unuias } from "./unu-ias.png";
 export { default as netzero101 } from "./net-zero-101.pdf";
@@ -14,7 +16,6 @@ import estice from "./estice.svg";
 export { estice };
 import Hackviser from "./Hackviser.pdf";
 export { Hackviser };
-import logo from "./logo0.png";
 import moondiscoveries from "./moondiscoveries.png";
 import backend from "./backend.png";
 import html from "./tech/html.png";
@@ -100,7 +101,6 @@ import atsscreenerlanding from "./atsscreenerlanding.png"
 const resume = "/resume.pdf";
 
 export {
-  logo,
   html,
   linux,
   mysql,
