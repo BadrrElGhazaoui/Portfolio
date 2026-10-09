@@ -435,9 +435,11 @@ const extracurricular = [
     icon: uie,
     iconBg: "#CCCFD8",
     date: "Oct 2026",
-    points: ["- Learned the fundamentals of borehole drilling planning and project management.
-- Explored contracting procedures and the management of borehole drilling projects.
-- Gained an understanding of the key stages involved in organizing and managing drilling operations."],
+points: [
+  "Learned the fundamentals of borehole drilling planning and project management.",
+  "Explored contracting procedures and the management of borehole drilling projects.",
+  "Gained an understanding of the key stages involved in organizing and managing drilling operations."
+],
     credential: "https://agora.unicef.org/admin/tool/certificate/index.php?code=6865777573BE",
     pdf: unicef,
   },
