@@ -1,6 +1,6 @@
 import profilepic from './pfp.png';
-import unicef from "./unicef.pdf";
-import uie from "./uie.png";
+import unicef from "./assets/unicef.pdf";
+import uie from "./assets/uie.png";
 export { default as att } from "./arms-trade-treaty.pdf";
 export { default as unitar } from "./unitar.png";
 export { default as lecedre } from "./lecedre.png";
