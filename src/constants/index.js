@@ -1,5 +1,6 @@
 import {
   estice,
+  uie,
   unitar,
   att,
   unuias,
@@ -427,6 +428,16 @@ const extracurricular = [
     points: ["Cybersecurity Fundamentals, Threat Detection, Risk Management, Network Protection, Security Awareness"],
     credential: "https://omp.dub.ai/certificate/euavGqkKtyEw",
     pdf: dubai,
+  },
+{
+    title: "Certificate - Borehole Drilling – Planning, Contracting & Management ",
+    type: "Professional Certificate",
+    icon: uie,
+    iconBg: "#CCCFD8",
+    date: "Oct 2026",
+    points: [""],
+    credential: "https://agora.unicef.org/admin/tool/certificate/index.php?code=6865777573BE",
+    pdf: unicef,
   },
 ];
 
