@@ -34,6 +34,7 @@ import {
   // git,   // unused - not in any array
   otu,
   rhhs,
+  piano,
   wonderland,
   mackenziehealth,
   privcurity,
@@ -468,6 +469,28 @@ const projects = [
   image: moondiscoveries,
   source_code_link: "https://github.com/BadrrElGhazaoui/Moon-Discoveries",
   live_project_link: "https://moondiscoveries.com",
+},
+{
+  name: "🎹 Le Piano",
+  description:
+    "As Part of the 'Self-Expression' course at ESTICE International Management, we each shared one of our dreams. Here's mine, I decided to turn it into a game.",
+  tags: [
+    {
+      name: "HTML",
+      color: "blue-text-gradient",
+    },
+    {
+      name: "Itch.io",
+      color: "green-text-gradient",
+    },
+    {
+      name: "Three.js",
+      color: "pink-text-gradient",
+    },
+  ],
+  image: piano,
+  source_code_link: "https://github.com/BadrrElGhazaoui/Le-Piano",
+  live_project_link: "https://badrelghazaoui.itch.io/le-piano",
 },
   // {
   //   name: "FinancialFlow 💸",
