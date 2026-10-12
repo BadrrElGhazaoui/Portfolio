@@ -491,6 +491,7 @@ const projects = [
   image: piano,
   source_code_link: "https://github.com/BadrrElGhazaoui/Le-Piano",
   live_project_link: "https://badrelghazaoui.itch.io/le-piano",
+  trailer_link: "https://www.youtube.com/watch?v=gnPFc08syOQ",
 },
   // {
   //   name: "FinancialFlow 💸",
