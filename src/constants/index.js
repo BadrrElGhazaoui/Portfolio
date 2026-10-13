@@ -1,6 +1,8 @@
 import {
   estice,
   uie,
+  france,
+  efset,
   unitar,
   att,
   unuias,
@@ -289,19 +291,6 @@ const designTools = [
 
 const experiences = [
   {
-    title: "Independent Tutor",
-    company_name: "Self-employed — Universities across Morocco",
-    icon: tutor,
-    iconBg: "#fff",
-    date: "Jan. 2023 - Present",
-    points: [
-      "Tutored students in Cybersecurity and Programming modules across multiple Moroccan universities: Al Akhawayn University (supported Master's students on cybersecurity topics tied to their Deloitte-affiliated program), FST Settat (Génie Informatique), EST Berrechid (Génie Informatique), ENSA Safi, ENSAM Casablanca, and EMSI Casablanca (Cycle Ingénierie Informatique et Réseaux).",
-      "Delivered one-on-one and small-group sessions, breaking down complex concepts in networking, security, and coding into clear, practical explanations tailored to each student's level.",
-      "Built long-term relationships with students, many of whom return for continued support — a personal, mentorship-style approach rather than a classroom lecture format.",
-      "Still actively tutoring today, alongside academic and professional work.",
-    ],
-  },
-  {
     title: "IT & Accounting Intern",
     company_name: "Petro Pièces SARL, Casablanca",
     icon: wonderland,
@@ -340,6 +329,26 @@ const extracurricular = [
     points: ["Net Zero, Climate Change, Sustainability, Greenhouse Gas Emissions, Climate Action"],
     pdf: netzero101,
   },
+{
+  title: "Test de Connaissance du Français (TCF)",
+  type: "Language Certificate",
+  icon: france,
+  iconBg: "#0A3A8C",
+  date: "February 2026",
+  points: [
+    "French Language Proficiency, Reading, Listening, Written and Spoken Communication, Professional and Academic French",
+  ],
+},
+{
+  title: "EF SET English Certificate",
+  type: "Language Certificate",
+  icon: efset,
+  iconBg: "#0A0E27",
+  date: "October 2023",
+  points: [
+    "English Language Proficiency, Reading, Listening, Professional and Academic English, CEFR-Aligned Assessment",
+  ],
+},
 {
   title: "Arms Trade Treaty Annual Reporting",
   type: "Certificate of Completion by the United Nations Insitute for Training and Research (UNITAR)",
