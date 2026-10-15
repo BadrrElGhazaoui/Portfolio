@@ -1,5 +1,4 @@
 import {
-  BallCanvas,
 } from "./canvas";
 import Hero from "./Hero";
 import Navbar from "./Navbar";
@@ -23,5 +22,4 @@ export {
   Works,
   Contact,
   CanvasLoader,
-  BallCanvas,
 };

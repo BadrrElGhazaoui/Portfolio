@@ -172,7 +172,7 @@ const Extracurricular = () => {
           width: 100%;
         }
         .swiper-pagination-bullet {
-          background: #915eff;
+          background: #83A9F2;
         }
         .certification-card {
           background-color: rgba(30, 30, 60, 0.8);

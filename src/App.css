@@ -9,7 +9,7 @@
   transition: filter 300ms;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #83A9F266);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
@@ -44,10 +44,19 @@
 
 
 /* Honeycomb skills stuff */
+
+
 :root {
-  --color-2: #2a1d4c; /* Darker purple for hexagon background */
-  --color-3: #915eff; /* Lighter purple for glow effect */
+  --background: #080D1B;
+  --primary-accent: #83A9F2;
+  --text-primary: #F4F6FC;
+  --text-secondary: #A5AEC5;
+  --border-color: #202B43;
+
+  --color-2: #202B43;
+  --color-3: #83A9F2;
 }
+
 
 .skills {
   display: flex;
@@ -128,7 +137,7 @@
 }
 
 .honeycomb-row .hexagon:hover {
-  filter: drop-shadow(0 0 10px rgba(128,0,128, 0.9)); /* Add a shadow on hover, last number is how intense it is*/
+  filter: drop-shadow(0 0 10px rgba(131, 169, 242, 0.45));
 }
 
 .honeycomb-row .hexagon:hover::after {
@@ -138,7 +147,7 @@
 .category-title {
   font-family: var(--script-font);
   font-size: 26px;
-  background: linear-gradient(90deg, #915EFF, #00BFFF);
+  background: linear-gradient(90deg, #83A9F2, #F4F6FC);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

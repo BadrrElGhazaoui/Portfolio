@@ -15,6 +15,7 @@ const ProjectCard = ({
   image,
   source_code_link,
   live_project_link,
+  trailer_link,
   animate,
 }) => {
   return (
@@ -61,13 +62,27 @@ const ProjectCard = ({
           ))}
         </div>
 
-        {live_project_link && (
-          <a href={live_project_link} target="_blank" rel="noopener noreferrer">
-            <button className="mt-3 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]">
-              Live Project
-            </button>
-          </a>
-        )}
+{(live_project_link || trailer_link) && (
+  <div className="mt-3 flex flex-wrap gap-3">
+    {live_project_link && (
+      <a href={live_project_link} target="_blank" rel="noopener noreferrer">
+        <button className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-all duration-300 
+hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]">
+          Live Project
+        </button>
+      </a>
+    )}
+
+    {trailer_link && (
+      <a href={trailer_link} target="_blank" rel="noopener noreferrer">
+        <button className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-all duration-300 
+hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]">
+          ▶ Trailer
+        </button>
+      </a>
+    )}
+  </div>
+)}
       </Tilt>
     </motion.div>
   );
