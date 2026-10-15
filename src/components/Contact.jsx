@@ -1,5 +1,4 @@
 "use client"
-
 import { useRef, useState, useCallback, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Toaster, toast } from "react-hot-toast"
@@ -11,7 +10,7 @@ import { slideIn } from "../utils/motion"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUser, faEnvelope, faComment, faPaperPlane, faSpinner, faPhone } from "@fortawesome/free-solid-svg-icons"
-import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import { faInstagram, faWhatsapp, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
 const Contact = () => {
   const formRef = useRef()
@@ -250,7 +249,16 @@ transition-all duration-300 focus:ring-2 focus:ring-purple-500/50 focus:border-p
             >
               <FontAwesomeIcon icon={faInstagram} className="text-2xl" />
             </a>
-            
+   <a
+  href="https://www.youtube.com/@Badr-El-Ghazaoui"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="YouTube"
+  className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-red-500 hover:text-red-500 
+hover:scale-110 transition-all duration-300"
+>
+  <FontAwesomeIcon icon={faYoutube} className="text-2xl" />
+</a>         
               <a
                 href="mailto:badr@badrelghazaoui.com"
               aria-label="Email"
