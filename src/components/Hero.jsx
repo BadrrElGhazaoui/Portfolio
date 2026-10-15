@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
 import { useState, useEffect } from "react";
 
 const TypewriterText = ({ texts }) => {
@@ -70,14 +69,12 @@ const WavingHand = () => {
 
 const Hero = () => {
   const typedItems = [
-    "Cybersecurity Enthusiast",
-    "Blogger at Moon Discoveries",
-    "Cinema & Music Lover",
-    "Retro Gaming Fan"
+    "International Student",
+    "Blogger"
   ];
 
   return (
-    <section className="relative w-full h-screen mx-auto">
+<section className="relative w-full h-[70vh] min-h-[460px] mx-auto">
       <style jsx>{`
         @keyframes wave {
           0% { transform: rotate(0deg); }
@@ -109,31 +106,12 @@ const Hero = () => {
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I'm a <TypewriterText texts={typedItems} />
             <br />
-            <b>Welcome to my portfolio, please view on desktop for an interactive experience!</b>
+            <b>Welcome to my Portfolio!</b>
           </p>
         </div>
       </div>
       <br /><br /><br />
 
-      <ComputersCanvas />
-
-      <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
-        <a href="#about">
-          <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
-            <motion.div
-              animate={{
-                y: [0, 24, 0],
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className="w-3 h-3 rounded-full bg-secondary mb-1"
-            />
-          </div>
-        </a>
-      </div>
     </section>
   );
 };
