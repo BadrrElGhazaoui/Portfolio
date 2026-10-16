@@ -47,14 +47,17 @@ const CertificationCard = ({ title, icon, type, date, points, credential, pdf })
           PDF
         </a>
       )}
-      <a
-        href={credential}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="black-gradient text-secondary py-2 px-4 rounded-lg outline-none w-fit text-[12px] font-bold shadow-md shadow-primary transition-all hover:scale-105 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)] no-select"
-      >
-        View Credential
-      </a>
+      {credential && (
+  <a
+    href={credential}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`View credential: ${title}`}
+    className="black-gradient text-secondary py-2 px-4 rounded-lg outline-none w-fit text-[12px] font-bold shadow-md shadow-primary transition-all hover:scale-105 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)] no-select"
+  >
+    View Credential
+  </a>
+)}
     </div>
   </div>
 );
