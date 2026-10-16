@@ -1,16 +1,16 @@
-import profilepic from './pfp.png';
+import profilepic from './pfp.webp';
 import unicef from "./unicef.pdf";
-import uie from "./uie.png";
+import uie from "./uie.webp";
 import piano from "./piano.jpg";
-import france from "./france.jpeg";
-import efset from "./efset.png";
-export { default as france } from "./france.jpeg";
-export { default as efset } from "./efset.png";
+import france from "./france.webp";
+import efset from "./efset.webp";
+export { default as france } from "./france.webp";
+export { default as efset } from "./efset.webp";
 export { default as piano } from "./piano.jpg";
 export { default as att } from "./arms-trade-treaty.pdf";
-export { default as unitar } from "./unitar.png";
+export { default as unitar } from "./unitar.webp";
 export { default as lecedre } from "./lecedre.png";
-export { default as unuias } from "./unu-ias.png";
+export { default as unuias } from "./unu-ias.webp";
 export { default as netzero101 } from "./net-zero-101.pdf";
 export { default as encgsettat } from "./encgsettat.png";
 import ibm from "./company/ibm.svg";
@@ -18,13 +18,13 @@ import IntroductiontoCybersecurityCareers from "./IntroductiontoCybersecurityCar
 export { IntroductiontoCybersecurityCareers };
 import dubai from "./dubai.pdf";
 export { dubai };
-import uae from "./uae.png";
+import uae from "./uae.webp";
 export { uae };
 import estice from "./estice.svg";
 export { estice };
 import Hackviser from "./Hackviser.pdf";
 export { Hackviser };
-import moondiscoveries from "./moondiscoveries.png";
+import moondiscoveries from "./moondiscoveries.webp";
 import backend from "./backend.png";
 import html from "./tech/html.png";
 import mobile from "./mobile.png";
@@ -40,32 +40,32 @@ export { ToolsoftheTrade_LinuxandSQL };
 import Assets_Threats_andVulnerabilities from "./Assets_Threats_andVulnerabilities.pdf";
 export { Assets_Threats_andVulnerabilities };
 import fullstack from "./creator.png";
-import github from "./github.png";
+import github from "./github.webp";
 import menu from "./menu.svg";
 import close from "./close.svg";
 import hack from "./hack.svg";
 import tor from "./tech/tor.svg"
-import docker from "./tech/docker.png";
+import docker from "./tech/docker.webp";
 // import figma from "./tech/figma.png";  // unused - not displayed
 import mysql from "./tech/mysql.png"; 
 // import css from "./tech/css.png";      // unused - not displayed
 // import git from "./tech/git.png";      // unused - not displayed
 import javascript from "./tech/javascript.png";
 import java from "./tech/java.png";
-import ubuntu from "./tech/ubuntu.png";
+import ubuntu from "./tech/ubuntu.webp";
 import reactjs from "./tech/reactjs.png";
 import postgresql from "./tech/postgresql.png";
 import mongodb from "./tech/mongodb.png";
 import linux from "./tech/linux.png"; 
 import tailwind from "./tech/tailwind.png";
-import python from "./tech/python.png"
+import python from "./tech/python.webp"
 import cplusplus from "./tech/c++.svg"
 import typescript from "./tech/typescript.png"
 import threejs from "./tech/threejs.svg"
-import azure from "./tech/azure.png";
+import azure from "./tech/azure.webp";
 import powershell from "./tech/powershell.svg"
 import cisco from "./tech/cisco.svg"
-import virtualbox from "./tech/virtualbox.png"
+import virtualbox from "./tech/virtualbox.webp"
 import kalilinux from "./tech/kali_linux.svg"
 import wireshark from "./tech/wireshark.png"
 import nmap from "./tech/nmap.svg"
@@ -77,7 +77,7 @@ import aircrackng from "./tech/aircrackng.svg"  // unused - not in Tech.jsx
 
 import photoshop from "./tech/photoshop.svg"
 import premiere from "./tech/premiere.svg"
-import cinema4d from "./tech/cinema4d.png"
+import cinema4d from "./tech/cinema4d.webp"
 // import blender from "./tech/blender.svg"  // unused - not in Tech.jsx
 
 
@@ -87,7 +87,7 @@ import wonderland from "./company/wonderland.svg"
 import mackenziehealth from "./company/mackenziehealth.png"
 import privcurity from "./company/privcurity.jpg"
 import staples from "./company/staples.png"
-import google from "./company/google.png"
+import google from "./company/google.webp"
 import whmis from "./company/whmis.png"
 import aws from "./tech/aws.png";
 import microsoft from "./company/microsoft.png";
