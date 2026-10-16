@@ -123,7 +123,7 @@ const Extracurricular = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
-          loop={true}
+          loop={false}
           spaceBetween={0}
           coverflowEffect={{
             rotate: 50,

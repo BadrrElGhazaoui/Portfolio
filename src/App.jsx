@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
-import { About, Contact, Education, Experience, Extracurricular, Hero, Navbar, Tech, Works } from './components'
+import { About, Contact, Education, Experience, Hero, Navbar, Tech, Works } from './components'
+
+const Extracurricular = lazy(() => import('./components/Extracurricular'))
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
         <About />
         <Education />
         <Experience />
-        <Extracurricular />
+        <Suspense fallback={<div className="min-h-[620px] sm:min-h-[660px]" aria-hidden="true" />}>
+          <Extracurricular />
+        </Suspense>
         <Tech />
         <Works />
         <div className="div relative z-0">
