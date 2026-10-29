@@ -3,52 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="preload"
-      as="image"
-      href="/herobg.webp"
-      type="image/webp"
-      fetchpriority="high"
-    />
-    <meta name="theme-color" content="#0a0e27" />
+    <meta name="theme-color" content="#f8fafc" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXNNJ8XR9N"></script>
+    <!-- Load analytics after the initial page render to keep it off the critical path. -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      window.addEventListener("load", () => {
+        window.setTimeout(() => {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { window.dataLayer.push(arguments); }
+          gtag("js", new Date());
+          gtag("config", "G-MXNNJ8XR9N");
 
-      gtag('config', 'G-MXNNJ8XR9N');
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = "https://www.googletagmanager.com/gtag/js?id=G-MXNNJ8XR9N";
+          document.head.appendChild(script);
+        }, 10000);
+      }, { once: true });
     </script>
 
-    <!-- Icons and fonts -->
+    <!-- Site icons -->
     <link rel="icon" type="image/png" href="/favicon.png?v=2" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Dancing+Script:wght@700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Dancing+Script:wght@700&display=swap"
-      />
-    </noscript>
 
     <!-- Primary SEO metadata -->
-    <title>Badr El Ghazaoui</title>
+    <title>Badr El Ghazaoui — International Management &amp; Technology</title>
 
     <meta
       name="description"
-      content="Discover Badr El Ghazaoui's academic background in 
-International Management at ESTICE, Université Catholique de Lille, 
-previous studies at ENCG Settat, professional experience, technology 
-interests, and creative projects."
+      content="Meet Badr El Ghazaoui, an international management student in Lille, France, exploring the intersection of business, technology, cybersecurity, and creative work."
     />
 
     <meta name="robots" content="index, follow" />
@@ -60,10 +43,10 @@ interests, and creative projects."
     <!-- Open Graph: social sharing previews -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Badr El Ghazaoui" />
-    <meta property="og:title" content="Badr El Ghazaoui | Personal Portfolio" />
+    <meta property="og:title" content="Badr El Ghazaoui — International Management & Technology" />
     <meta
       property="og:description"
-      content="Explore Badr El Ghazaoui's education, professional experience, technology interests, creative projects, and personal work."
+      content="Meet Badr El Ghazaoui, an international management student in Lille, France, exploring the intersection of business, technology, cybersecurity, and creative work."
     />
     <meta property="og:url" content="https://badrelghazaoui.com/" />
     <meta property="og:image" content="https://badrelghazaoui.com/share-preview.png" />
@@ -73,10 +56,10 @@ interests, and creative projects."
 
     <!-- Twitter / X sharing previews -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Badr El Ghazaoui | Personal Portfolio" />
+    <meta name="twitter:title" content="Badr El Ghazaoui — International Management & Technology" />
     <meta
       name="twitter:description"
-      content="Academic background, professional experience, technology interests, and creative projects by Badr El Ghazaoui."
+      content="International management student exploring business, technology, cybersecurity, and creative work."
     />
     <meta name="twitter:image" content="https://badrelghazaoui.com/share-preview.png" />
 
@@ -90,14 +73,7 @@ interests, and creative projects."
       "email": "mailto:badr@badrelghazaoui.com",
       "url": "https://badrelghazaoui.com/",
       "mainEntityOfPage": "https://badrelghazaoui.com/",
-      "description": "Badr El Ghazaoui is an International Management 
-student at ESTICE, Université Catholique de Lille, in Lille, France. His 
-academic background includes studies at ENCG Settat in Morocco and a 
-Baccalauréat in Physical Sciences, with high honors. His experience 
-includes accounting at Petro Pieces, technology and cybersecurity 
-interests, and creative projects such as Le Piano, a game published on 
-itch.io. He also writes about technology, films, and music on 
-Moondiscoveries. He speaks Arabic, French, English, and Spanish.",
+      "description": "Badr El Ghazaoui is an international management student at ESTICE, Université Catholique de Lille, in Lille, France. Originally from Morocco, he has an academic background at ENCG Settat and a Physical Sciences baccalaureate. His interests include technology, cybersecurity, and creative projects, including Le Piano and Moon Discoveries. He speaks Arabic, French, English, and Spanish.",
       "image": "https://badrelghazaoui.com/share-preview.png",
       "sameAs": [
         "https://www.linkedin.com/in/badr-el-ghazaoui/",
@@ -161,8 +137,8 @@ Moondiscoveries. He speaks Arabic, French, English, and Spanish.",
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-df639172.js"></script>
-    <link rel="stylesheet" href="/assets/index-22081d46.css">
+    <script type="module" crossorigin src="/assets/index-b6269601.js"></script>
+    <link rel="stylesheet" href="/assets/index-1313a688.css">
   </head>
   <body>
     <div id="root"></div>
