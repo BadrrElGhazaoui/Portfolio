@@ -1,29 +1,26 @@
-import React, { lazy, Suspense } from 'react'
+import React from 'react'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
-import { About, Contact, Education, Experience, Hero, Navbar, Tech, Works } from './components'
-
-const Extracurricular = lazy(() => import('./components/Extracurricular'))
+import { About, Contact, Education, Experience, Extracurricular, Hero, Navbar, Tech, Works } from './components'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div className="div bg-hero-pattern bg-cover bg-no-repeat bg-center">
-          <Navbar />
+      <div id="top" className="relative z-0 min-h-screen overflow-hidden bg-primary text-navy">
+        <Navbar />
+        <main>
           <Hero />
-        </div>
-        <About />
-        <Education />
-        <Experience />
-        <Suspense fallback={<div className="min-h-[620px] sm:min-h-[660px]" aria-hidden="true" />}>
+          <About />
+          <Education />
+          <Experience />
           <Extracurricular />
-        </Suspense>
-        <Tech />
-        <Works />
-        <div className="div relative z-0">
+          <Tech />
+          <Works />
           <Contact />
-        </div>
+        </main>
+        <footer className="mx-auto max-w-7xl px-6 pb-8 pt-2 text-center text-xs tracking-wide text-secondary sm:px-10 lg:px-16">
+          © {new Date().getFullYear()} Badr El Ghazaoui. Built with curiosity.
+        </footer>
       </div>
     </BrowserRouter>
   )

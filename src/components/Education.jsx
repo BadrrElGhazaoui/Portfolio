@@ -1,102 +1,68 @@
-import React, { useRef, useEffect } from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion, useAnimation, useInView } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
+import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { education } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 
-const EducationCard = ({ education }) => {
-  return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={education.date}
-      iconStyle={{ background: education.iconBg }}
-      icon={
-        <div className="flex justify-center items-center w-full h-full">
-          <img
-            src={education.icon}
-            alt={education.company_name}
-            className="w-[60%] h-[60%] object-contain"
-          />
-        </div>
-      }
-    >
-      <div>
-        <h3 className="text-white text-[24px] font-bold">{education.title}</h3>
-        <p className="text-secondary text-[16px] font-semibold" style={{ margin: 0 }}>
-          {education.company_name}
+const Education = () => (
+  <div>
+    <motion.div variants={fadeIn("up", "spring", 0.1, 0.65)}>
+      <p className={styles.sectionSubText}>Academic background</p>
+      <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <h2 className={styles.sectionHeadText}>Education</h2>
+        <p className="max-w-xl text-sm leading-6 text-secondary sm:text-right">
+          From foundational studies in Morocco to international management in
+          France.
         </p>
       </div>
+    </motion.div>
 
-      <ul className="mt-5 list-disc ml-5 space-y-2">
-        {education.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className="text-white-100 text-[14px] pl-1 tracking-wider"
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
-    </VerticalTimelineElement>
-  );
-};
+    <div className="mt-10 grid gap-4 lg:grid-cols-3">
+      {education.map((item, index) => (
+        <motion.article
+          key={`${item.company_name}-${item.date}`}
+          variants={fadeIn("up", "spring", index * 0.1, 0.65)}
+          className="education-card"
+        >
+          <div className="flex items-start justify-between gap-4">
+            <span className="education-icon">
+              <img
+                src={item.icon}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                className="h-8 w-8 object-contain"
+              />
+            </span>
+            <span className="education-date">{item.date}</span>
+          </div>
 
-const Education = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const mainControls = useAnimation();
+          <h3 className="mt-6 text-lg font-semibold leading-7 tracking-tight text-navy">
+            {item.title}
+          </h3>
+          <p className="mt-2 text-sm leading-6 text-secondary">
+            {item.company_name}
+          </p>
 
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
-  return (
-    <div ref={sectionRef}>
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <p className={`${styles.sectionSubText} text-center`}>What I have Studied so far</p>
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <h2 className={`${styles.sectionHeadText} text-center`}>Education.</h2>
-      </motion.div>
-
-      <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
-          {education.map((education, index) => (
-            <EducationCard key={`experience-${index}`} education={education} />
-          ))}
-        </VerticalTimeline>
-      </div>
+          <ul className="mt-5 space-y-3 border-t border-navy/10 pt-5">
+            {item.points.map((point) => (
+              <li
+                key={point}
+                className="flex gap-3 text-sm leading-6 text-secondary"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.article>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default SectionWrapper(Education, "education");

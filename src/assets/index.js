@@ -1,4 +1,3 @@
-import profilepic from './pfp.webp';
 import unicef from "./unicef.pdf";
 import uie from "./uie.webp";
 import piano from "./piano.jpg";
@@ -25,6 +24,9 @@ export { estice };
 import Hackviser from "./Hackviser.pdf";
 export { Hackviser };
 import moondiscoveries from "./moondiscoveries.webp";
+import rayanePreview from "./rayane-sdiri-preview.webp";
+import heroPortrait from "./badr-portrait.webp";
+import pedroPieces from "./pedro-pieces-logo.png";
 import backend from "./backend.png";
 import html from "./tech/html.png";
 import mobile from "./mobile.png";
@@ -139,6 +141,9 @@ export {
   otu,
   rhhs,
   moondiscoveries,
+  rayanePreview,
+  heroPortrait,
+  pedroPieces,
   wonderland,
   mackenziehealth,
   privcurity,
@@ -173,7 +178,6 @@ export {
   // financialflowimage,
   atsscreenerlanding,
   // enterpriseapitester,
-  profilepic,
   docker,
   // figma,
   // mysql,

@@ -1,158 +1,99 @@
-"use client"
+import { motion } from "framer-motion";
 
-import { useEffect, useRef } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
+import { styles } from "../styles";
+import { SectionWrapper } from "../hoc";
+import { fadeIn } from "../utils/motion";
+import { resume } from "../assets";
 
-import { styles } from "../styles"
-import { SectionWrapper } from "../hoc"
-import { fadeIn } from "../utils/motion"
-import { resume, profilepic } from "../assets"
+const highlights = [
+  { label: "Based in", value: "Lille, France" },
+  { label: "Currently studying", value: "International Management" },
+  { label: "Interested in", value: "Technology & cybersecurity" },
+  { label: "Languages", value: "Arabic · French · English · Spanish" },
+];
 
-const ServiceCard = ({ index, title, icon }) => (
-  <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)} className="w-full xs:w-[250px]">
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
-    >
-      <div className="bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col relative overflow-hidden">
-        <motion.img
-          src={icon}
-          alt="web-development"
-          className="w-16 h-16 object-contain"
-          whileHover={{ rotate: 360 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-        />
+const About = () => (
+  <div className="about-layout">
+    <motion.div variants={fadeIn("right", "spring", 0.1, 0.7)}>
+      <p className={styles.sectionSubText}>A little about me</p>
+      <h2 className={styles.sectionHeadText}>More than one perspective.</h2>
+      <div className="mt-8 max-w-2xl space-y-5 text-base leading-8 text-secondary sm:text-lg">
+        <p>
+          I&apos;m Badr El Ghazaoui, an international management student at
+          ESTICE, Université Catholique de Lille. My path has taken me from
+          Morocco to France, and I&apos;m at my best when I can connect
+          different perspectives.
+        </p>
+        <p>
+          I&apos;m drawn to the way business, technology, and human stories
+          shape one another. That curiosity takes form in hands-on projects,
+          learning about cybersecurity, and writing on{" "}
+          <a
+            href="https://moondiscoveries.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline decoration-accent/30 underline-offset-4 transition-colors hover:text-navy"
+          >
+            Moon Discoveries
+          </a>
+          .
+        </p>
+      </div>
 
-        <h3 className="text-white text-[20px] font-bold text-center">{title}</h3>
-
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0"
-          whileHover={{ opacity: 0.2 }}
-          transition={{ duration: 0.3 }}
-        />
+      <div className="mt-9 flex flex-wrap gap-3">
+        <a
+          href={resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-primary"
+        >
+          View my résumé <span aria-hidden="true">↗</span>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/badr-el-ghazaoui"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-secondary"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://github.com/BadrrElGhazaoui"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-secondary"
+        >
+          GitHub
+        </a>
       </div>
     </motion.div>
-  </motion.div>
-)
 
-const About = () => {
-  const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-  const mainControls = useAnimation()
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible")
-    }
-  }, [isInView, mainControls])
-
-  return (
-    <div ref={sectionRef} className="pt-[60px] md:pt-0 overflow-hidden">
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <p className={styles.sectionSubText}>Introduction</p>
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
-      </motion.div>
-
-      <div className="mt-10 flex flex-col md:flex-row items-center md:items-start gap-10">
-        <motion.div
-          variants={fadeIn("right", "spring", 0.5, 0.75)}
-          className="w-full md:w-1/3 flex flex-col items-center"
-        >
-          <div className="relative w-64 h-64 rounded-full overflow-hidden shadow-[0_0_22.5px_7.5px_rgba(128,0,1028,1.0)]">
-            <div className="w-full h-full overflow-hidden">
-              <img
-                src={profilepic || "/placeholder.svg"}
-                alt="Badr El Ghazaoui"
-                className="w-full h-full object-cover"
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "50% 30%",
-                }}
-              />
-            </div>
-          </div>
-          <div className="mt-10 flex flex-wrap gap-5 justify-center">
-            <motion.button
-              className="px-6 py-3 font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-md shadow-[0_5px_0_0_rgba(0,0,0,0.6)] transition-all duration-100 ease-in-out hover:shadow-[0_3px_0_0_rgba(0,0,0,0.6)] hover:translate-y-[2px] active:translate-y-1 active:shadow-none select-none"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open(resume, "_blank")}
-            >
-              Resume
-            </motion.button>
-
-            <motion.button
-              className="px-6 py-3 font-semibold text-white bg-gradient-to-r from-blue-400 to-blue-600 rounded-md shadow-[0_5px_0_0_rgba(0,0,0,0.6)] transition-all duration-100 ease-in-out hover:shadow-[0_3px_0_0_rgba(0,0,0,0.6)] hover:translate-y-[2px] active:translate-y-1 active:shadow-none select-none"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("https://www.linkedin.com/in/badr-el-ghazaoui", "_blank")}
-            >
-              LinkedIn
-            </motion.button>
-
-            <motion.button
-              className="px-6 py-3 font-semibold text-white bg-gradient-to-r from-gray-600 to-gray-800 rounded-md shadow-[0_5px_0_0_rgba(0,0,0,0.6)] transition-all duration-100 ease-in-out hover:shadow-[0_3px_0_0_rgba(0,0,0,0.6)] hover:translate-y-[2px] active:translate-y-1 active:shadow-none select-none"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open("https://github.com/BadrrElGhazaoui", "_blank")}
-            >
-              GitHub
-            </motion.button>
-          </div>
-        </motion.div>
-
-        <motion.div variants={fadeIn("left", "spring", 0.5, 0.75)} className="w-full md:w-2/3">
-          <motion.ul
-            variants={fadeIn("", "", 0.1, 1)}
-            className="mt-4 text-secondary text-[17px] max-w-3xl space-y-6 list-none"
+    <motion.aside
+      variants={fadeIn("left", "spring", 0.2, 0.7)}
+      className="about-facts"
+      aria-label="Profile highlights"
+    >
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        The essentials
+      </p>
+      <dl className="mt-5 divide-y divide-navy/10">
+        {highlights.map(({ label, value }) => (
+          <div
+            key={label}
+            className="grid gap-1 py-4 sm:grid-cols-[minmax(120px,0.7fr)_1fr] sm:gap-5"
           >
-<motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.1, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">👨‍💻</span>
-              <span>
-                I&apos;m Badr El Ghazaoui — a student at ESTICE - International Management - Université Catholique de Lille, Lille-France, with a passion for IT, cybersecurity, and everything that sparks curiosity.
-              </span>
-            </motion.li>
-            <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.2, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">🎓</span>
-              <span>
-                Currently in my second year of a 2-year higher education degree in International Management at ESTICE. I previously earned honors at ENCG Settat (Morocco) and graduated with highest honors in my Scientific Baccalaureate in Physics-Chemistry.
-              </span>
-            </motion.li>
-            <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.3, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">🔐</span>
-              <span>
-                From Kali Linux and Trojan viruses to the Tor network and Metasploit — I explore cybersecurity the way others explore music: with obsession and wonder.
-              </span>
-            </motion.li>
-            <motion.li className="flex items-start" variants={fadeIn("up", "spring", 0.4, 0.75)}>
-              <span className="mr-4 text-2xl flex-shrink-0">🌙</span>
-              <span>
-                I write about everything that moves me — cinema, Arabic music, books, games, and IT — on my blog Moon Discoveries. Ancient nomads named the full moon Badr. I try to live up to it.
-              </span>
-            </motion.li>
-          </motion.ul>
-        </motion.div>
+            <dt className="text-sm text-secondary">{label}</dt>
+            <dd className="text-sm font-medium leading-6 text-navy">{value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div className="mt-4 rounded-xl border border-accent/20 bg-accent/[0.06] p-4">
+        <p className="text-sm leading-6 text-secondary">
+          Rooted in Morocco. Learning and building a life in France.
+        </p>
       </div>
-    </div>
-  )
-}
+    </motion.aside>
+  </div>
+);
 
-export default SectionWrapper(About, "about")
+export default SectionWrapper(About, "about");

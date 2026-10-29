@@ -1,223 +1,122 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+
 import { styles } from "../styles";
 import { extracurricular } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
+import { fadeIn } from "../utils/motion";
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-
-const CertificationCard = ({ title, icon, type, date, points, credential, pdf }) => (
-  <div className="certification-card bg-tertiary p-6 rounded-2xl w-full h-full flex flex-col justify-between no-select">
-    <div>
-      <div className="relative w-full h-[50px] mb-4">
+const CertificationCard = ({
+  title,
+  icon,
+  type,
+  date,
+  points,
+  credential,
+  pdf,
+  requestEmail,
+}) => (
+  <article className="certification-card flex h-full flex-col rounded-2xl p-6">
+    <div className="flex items-start gap-4">
+      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-navy/10 bg-white p-2">
         <img
           src={icon}
-          alt={title}
-          className="w-auto h-full object-contain no-select"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-contain"
         />
+      </span>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+          {date}
+        </p>
+        <p className="certification-type mt-1 text-xs leading-5 text-secondary">
+          {type}
+        </p>
       </div>
-      <h3 className="text-white font-bold text-[20px] mb-2 no-select">{title}</h3>
-      <p className="text-secondary text-[12px] mb-1 no-select">{type}</p>
-      <p className="text-secondary text-[12px] mb-3 no-select">{date}</p>
-      <ul className="list-disc ml-5 space-y-1">
-        {points.slice(0, 2).map((point, index) => (
-          <li
-            key={`certification-point-${index}`}
-            className="text-white-100 text-[12px] pl-1 tracking-wider no-select"
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
     </div>
-    <div className="mt-4 flex justify-end gap-2 no-select">
-      {pdf && (
-        <a
-          href={pdf}
-          download
-          target="_blank"
-          rel="noopener noreferrer"
-          className="black-gradient text-secondary py-2 px-4 rounded-lg outline-none w-fit text-[12px] font-bold shadow-md shadow-primary transition-all hover:scale-105 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)] no-select"
+
+    <h3 className="mt-5 text-lg font-semibold leading-6 tracking-tight text-navy">
+      {title}
+    </h3>
+    <ul className="mt-4 flex-1 space-y-2 border-t border-navy/10 pt-4">
+      {points.slice(0, 2).map((point) => (
+        <li key={point} className="flex gap-2 text-sm leading-6 text-secondary">
+          <span
+            aria-hidden="true"
+            className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+          />
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+
+    {(credential || pdf || requestEmail) && (
+      <div className="mt-5 flex flex-wrap gap-2">
+        {credential && (
+          <a
+            href={credential}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-primary min-h-10 rounded-lg px-4 py-2 text-xs"
+          >
+            View credential <span aria-hidden="true">↗</span>
+          </a>
+        )}
+        {pdf && (
+          <a
+            href={pdf}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button-secondary min-h-10 rounded-lg px-4 py-2 text-xs"
+          >
+            PDF
+          </a>
+        )}
+        {requestEmail && (
+          <a
+            href={`mailto:badr@badrelghazaoui.com?subject=${encodeURIComponent(
+              `Certificate request: ${title}`,
+            )}&body=${encodeURIComponent(
+              `Hello Badr,\n\nI would like to request a copy of your ${title} certificate.\n\nThank you.`,
+            )}`}
+            className="button-secondary min-h-10 rounded-lg px-4 py-2 text-xs"
+          >
+            Request certificate <span aria-hidden="true">↗</span>
+          </a>
+        )}
+      </div>
+    )}
+  </article>
+);
+
+const Extracurricular = () => (
+  <div>
+    <motion.div variants={fadeIn("up", "spring", 0.1, 0.65)}>
+      <p className={`${styles.sectionSubText} text-center`}>
+        Continuous learning
+      </p>
+      <h2 className={`${styles.sectionHeadText} mt-2 text-center`}>
+        Certifications
+      </h2>
+      <p className="mx-auto mt-4 max-w-2xl text-center text-sm leading-6 text-secondary sm:text-base">
+        Selected professional, language, and international learning
+        achievements.
+      </p>
+    </motion.div>
+
+    <div className="mt-10 grid items-stretch gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      {extracurricular.map((certification) => (
+        <div
+          key={`${certification.title}-${certification.date}`}
+          className="min-w-0"
         >
-          PDF
-        </a>
-      )}
-      {credential && (
-  <a
-    href={credential}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={`View credential: ${title}`}
-    className="black-gradient text-secondary py-2 px-4 rounded-lg outline-none w-fit text-[12px] font-bold shadow-md shadow-primary transition-all hover:scale-105 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)] no-select"
-  >
-    View Credential
-  </a>
-)}
+          <CertificationCard {...certification} />
+        </div>
+      ))}
     </div>
   </div>
 );
-
-const Extracurricular = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
-
-  return (
-    <div ref={sectionRef}>
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <p className={`${styles.sectionSubText} text-center`}>Continuous Learning</p>
-      </motion.div>
-
-      <motion.div
-        initial="hidden"
-        animate={mainControls}
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-      >
-        <h2 className={`${styles.sectionHeadText} text-center`}>Certifications</h2>
-      </motion.div>
-
-      <motion.div 
-        variants={fadeIn("up", "spring", 0.5, 0.75)}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="mt-20 flex flex-col items-center"
-      >
-        <Swiper
-          effect={'coverflow'}
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          loop={false}
-          spaceBetween={0}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[EffectCoverflow, Pagination, Autoplay]}
-          className="mySwiper"
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          breakpoints={{
-            1024:{
-              slidesPerView: 3,
-            }
-          }}
-        >
-          {extracurricular.map((certification, index) => (
-            <SwiperSlide key={`certification-${index}`}>
-              <CertificationCard {...certification} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </motion.div>
-
-      <style jsx global>{`
-        .mySwiper {
-          width: 100%;
-          padding-top: 50px;
-          padding-bottom: 50px;
-        }
-        .swiper-slide {
-          background-position: center;
-          background-size: cover;
-          width: 280px;
-          height: 380px;
-        }
-        .swiper-slide-active {
-          transform: scale(1.1) !important;
-        }
-        .swiper-slide img {
-          display: block;
-          width: 100%;
-        }
-        .swiper-pagination-bullet {
-          background: #83A9F2;
-        }
-        .certification-card {
-          background-color: rgba(30, 30, 60, 0.8);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          transition: all 0.3s ease-in-out;
-        }
-        .black-gradient {
-          background: #000000;
-          background: -webkit-linear-gradient(to right, #434343, #000000);
-          background: linear-gradient(to right, #434343, #000000);
-        }
-        @media (max-width: 768px) {
-          .swiper-slide {
-            width: 90vw;
-            max-width: 300px;
-            height: auto;
-            min-height: 340px;
-            opacity: 1 !important;
-            transform: scale(1) !important;
-          }
-          .swiper-slide-active {
-            transform: scale(1) !important;
-          }
-          .mySwiper {
-            padding-left: 5vw;
-            padding-right: 5vw;
-          }
-          .certification-card {
-            background-color: rgba(30, 30, 60, 0.8);
-            box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.37);
-          }
-          .swiper-slide-next,
-          .swiper-slide-prev {
-            opacity: 0 !important;
-            visibility: hidden;
-          }
-        }
-      `}</style>
-    </div>
-  );
-};
 
 export default SectionWrapper(Extracurricular, "extracurricular");

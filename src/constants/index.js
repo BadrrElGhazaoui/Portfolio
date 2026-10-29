@@ -20,6 +20,7 @@ import {
   ToolsoftheTrade_LinuxandSQL,
   Assets_Threats_andVulnerabilities,
   moondiscoveries,
+  rayanePreview,
   backend,
   web,
   lecedre,
@@ -30,20 +31,15 @@ import {
   // html,  // unused - not in Tech.jsx
   // css,   // unused - not in any array
   reactjs,
-  ubuntu,
-  tailwind,
-  postgresql,
   // git,   // unused - not in any array
   otu,
   rhhs,
   piano,
-  wonderland,
   mackenziehealth,
   privcurity,
   staples,
   google,
   whmis,
-  aws,
   python,
   cplusplus,
   typescript,
@@ -56,7 +52,6 @@ import {
   // password_generator,
   // wordsearch,
   powershell,
-  cisco,
   virtualbox,
   kalilinux,
   wireshark,
@@ -74,7 +69,7 @@ import {
   // enterpriseapitester,
   atsscreenerlanding,
   github,
-  mongodb,
+  pedroPieces,
   unicef,
   microsoft,
   ibm,
@@ -191,14 +186,6 @@ const technologies = [
     icon: kalilinux,
   },
   {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "PostgreSQL",
-    icon: postgresql,
-  },
-  {
     name: "JavaScript",
     icon: javascript,
   },
@@ -206,10 +193,6 @@ const technologies = [
   //   name: "HTML 5",
   //   icon: html,
   // },
-    {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  }, 
   {
     name: "React JS",
     icon: reactjs,
@@ -218,20 +201,12 @@ const technologies = [
     name: "TypeScript",
     icon: typescript,
   },
-  {
-    name: "AWS",
-    icon: aws,
-  },
 ];
 
 const itTools = [
   {
     name: "Powershell",
     icon: powershell,
-  },
-  {
-    name: "Cisco",
-    icon: cisco,
   },
   {
     name: "VirtualBox",
@@ -292,8 +267,8 @@ const designTools = [
 const experiences = [
   {
     title: "IT & Accounting Intern",
-    company_name: "Petro Pièces SARL, Casablanca",
-    icon: wonderland,
+    company_name: "Pedro Pièces SARL, Casablanca",
+    icon: pedroPieces,
     iconBg: "#fff",
     date: "May 2025 - Jul. 2025",
     points: [
@@ -338,6 +313,7 @@ const extracurricular = [
   points: [
     "French Language Proficiency, Reading, Listening, Written and Spoken Communication, Professional and Academic French",
   ],
+  requestEmail: true,
 },
 {
   title: "EF SET English Certificate",
@@ -348,10 +324,11 @@ const extracurricular = [
   points: [
     "English Language Proficiency, Reading, Listening, Professional and Academic English, CEFR-Aligned Assessment",
   ],
+  requestEmail: true,
 },
 {
   title: "Arms Trade Treaty Annual Reporting",
-  type: "Certificate of Completion by the United Nations Insitute for Training and Research (UNITAR)",
+  type: "Certificate of Completion by the United Nations Institute for Training and Research (UNITAR)",
   icon: unitar,
   iconBg: "#FFFFFF",
   date: "Oct 2026",
@@ -364,7 +341,7 @@ const extracurricular = [
   pdf: att,
 },
   {
-    title: "Play It Safe: Manage Secu rity Risks",
+    title: "Play It Safe: Manage Security Risks",
     type: "Professional Certificate",
     icon: google,
     iconBg: "#000000",
@@ -398,7 +375,7 @@ const extracurricular = [
     pdf: ToolsoftheTrade_LinuxandSQL,
   },
   {
-    title: "Assets, Threats, and Vu lnerabilities",
+    title: "Assets, Threats, and Vulnerabilities",
     type: "Professional Certificate",
     icon: google,
     iconBg: "#000000",
@@ -430,17 +407,17 @@ const extracurricular = [
     pdf: Hackviser,
   },
   {
-    title: "One Million Prompters ",
+    title: "One Million Prompters",
     type: "Professional Certificate by the Dubai Centre for Artificial Intelligence (DCAI)",
     icon: uae,
     iconBg: "#CCCFD8",
     date: "Aug 2026",
-    points: ["Cybersecurity Fundamentals, Threat Detection, Risk Management, Network Protection, Security Awareness"],
+    points: ["Prompt engineering, generative AI, and responsible AI use"],
     credential: "https://omp.dub.ai/certificate/euavGqkKtyEw",
     pdf: dubai,
   },
 {
-    title: "Certificate - Borehole Drilling – Planning, Contracting & Management ",
+    title: "Borehole Drilling: Planning, Contracting & Management",
     type: "Professional Certificate",
     icon: uie,
     iconBg: "#CCCFD8",
@@ -457,6 +434,28 @@ points: [
 
 const projects = [
 
+{
+  name: "Rayane Sdiri — Athlete Portfolio",
+  description:
+    "Designed and developed by Badr El Ghazaoui for Rayane Sdiri, Moroccan national-team épée fencer and three-time Moroccan champion. The portfolio brings his sporting journey, achievements, community work, and collaborations together in one polished digital presence.",
+  tags: [
+    {
+      name: "Athlete Portfolio",
+      color: "blue-text-gradient",
+    },
+    {
+      name: "Web Design",
+      color: "green-text-gradient",
+    },
+    {
+      name: "Web Development",
+      color: "pink-text-gradient",
+    },
+  ],
+  image: rayanePreview,
+  live_project_link: "https://badrrelghazaoui.github.io/RayaneSdiri/",
+  live_project_label: "Visit Website",
+},
 {
   name: "Moon Discoveries 🌙",
   description:
@@ -476,7 +475,7 @@ const projects = [
     },
   ],
   image: moondiscoveries,
-  source_code_link: "https://github.com/BadrrElGhazaoui/Moon-Discoveries",
+  source_code_link: "https://github.com/BadrrElGhazaoui/MoonDiscoveries",
   live_project_link: "https://moondiscoveries.com",
 },
 {

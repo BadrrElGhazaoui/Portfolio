@@ -1,119 +1,81 @@
 import { motion } from "framer-motion";
-import { styles } from "../styles";
-import { useState, useEffect } from "react";
 
-const TypewriterText = ({ texts }) => {
-  const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
+import { heroPortrait } from "../assets";
 
-  useEffect(() => {
-    const typingInterval = setInterval(() => {
-      if (isTyping) {
-        const currentText = texts[currentIndex];
-        if (displayText.length < currentText.length) {
-          setDisplayText((prevText) => currentText.slice(0, prevText.length + 1));
-        } else {
-          setIsTyping(false);
-          clearInterval(typingInterval);
-          setTimeout(() => {
-            setIsTyping(true);
-            setDisplayText("");
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-          }, 2000); // Delay before next typing cycle
-        }
-      }
-    }, 100); // Typing speed
+const Hero = () => (
+  <section className="hero-section relative isolate overflow-hidden px-6 pb-24 pt-36 sm:px-10 sm:pt-40 lg:px-16 lg:pb-32">
+    <div className="hero-glow hero-glow-one" aria-hidden="true" />
+    <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
-    return () => {
-      clearInterval(typingInterval);
-    };
-  }, [currentIndex, isTyping, texts, displayText]);
+    <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
+      <motion.div
+        initial={{ opacity: 0, y: 22 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10"
+      >
+        <p className="mb-7 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary sm:text-sm">
+          <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_14px_rgba(49,90,130,0.3)]" />
+          International Management · Lille, France
+        </p>
 
-  return (
-    <span className="inline-block text-[#83A9F2] font-bold">
-      {displayText.split('').map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.1 }}
-        >
-          {char}
-        </motion.span>
-      ))}
-      {isTyping && (
-        <motion.span
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-          className="inline-block ml-1"
-        >
-          |
-        </motion.span>
-      )}
-    </span>
-  );
-};
+        <h1 className="max-w-3xl text-[clamp(2.5rem,5.2vw,4.75rem)] font-semibold leading-[1.02] tracking-[-0.06em] text-navy">
+          Business-minded.
+          <br />
+          <span className="hero-title-accent">Technology curious.</span>
+        </h1>
 
-const WavingHand = () => {
-  return (
-    <img 
-      src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f44b.png" 
-      alt="Waving Hand"
-      className="wave-emoji"
-      style={{ display: 'inline-block', marginLeft: '10px', width: '50px', height: '50px' }}
-    />
-  );
-};
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-secondary sm:text-xl sm:leading-9">
+          I&apos;m Badr El Ghazaoui — an international management student with a
+          lasting curiosity for technology, cybersecurity, and the ideas that
+          bring people together.
+        </p>
 
-const Hero = () => {
-  const typedItems = [
-    "International Student",
-    "Blogger"
-  ];
-
-  return (
-<section className="relative w-full h-[70vh] min-h-[460px] mx-auto">
-      <style jsx>{`
-        @keyframes wave {
-          0% { transform: rotate(0deg); }
-          10% { transform: rotate(-10deg); }
-          20% { transform: rotate(12deg); }
-          30% { transform: rotate(-10deg); }
-          40% { transform: rotate(9deg); }
-          50% { transform: rotate(0deg); }
-          100% { transform: rotate(0deg); }
-        }
-        .wave-emoji {
-          animation-name: wave;
-          animation-duration: 1.8s;
-          animation-iteration-count: infinite;
-          transform-origin: 70% 70%;
-          display: inline-block;
-        }
-      `}</style>
-      <div className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
-        <div className="flex flex-col justify-center items-center mt-5">
-          <div className="w-5 h-5 rounded-full bg-[#83A9F2]" />
-          <div className="w-1 sm:h-80 h-40 violet-gradient" />
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <a className="button-primary" href="#projects">
+            Explore my work
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a className="button-secondary" href="#contact">
+            Let&apos;s connect
+          </a>
         </div>
 
-        <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
-            Hi, I'm <span className="text-[#83A9F2]">Badr El Ghazaoui</span> <WavingHand />
-          </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I'm a <TypewriterText texts={typedItems} />
-            <br />
-            <b>Welcome to my Portfolio!</b>
-          </p>
+        <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 border-t border-navy/10 pt-6 text-sm text-secondary">
+          <span>Morocco&nbsp; → &nbsp;France</span>
+          <span>Arabic · French · English · Spanish</span>
         </div>
-      </div>
-      <br /><br /><br />
+      </motion.div>
 
-    </section>
-  );
-};
+      <motion.div
+        initial={{ opacity: 0, scale: 0.96, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mx-auto w-full max-w-[430px] lg:ml-auto"
+      >
+        <div className="hero-photo-frame relative aspect-[0.82] overflow-hidden rounded-[2rem] border border-white/10 p-2">
+          <img
+            src={heroPortrait}
+            alt="Portrait of Badr El Ghazaoui"
+            className="h-full w-full rounded-[1.55rem] object-cover object-[50%_32%]"
+          />
+          <div className="hero-photo-shade absolute inset-2 rounded-[1.55rem]" />
+          <div className="absolute inset-x-7 bottom-7 rounded-2xl border border-white/15 bg-navy/90 p-5 backdrop-blur-md sm:inset-x-9 sm:bottom-9">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
+              A curious mind, always learning
+            </p>
+            <p className="mt-2 text-sm leading-6 text-white/80">
+              From business and technology to culture, creativity, and beyond.
+            </p>
+          </div>
+        </div>
+        <div className="hero-photo-outline absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-[2rem] border border-accent/20" />
+        <span className="absolute -left-7 top-10 hidden rounded-full border border-white/10 bg-[#121b18] px-4 py-2 text-xs font-medium tracking-wide text-white/80 shadow-xl sm:block">
+          MOROCCO · FRANCE
+        </span>
+      </motion.div>
+    </div>
+  </section>
+);
 
 export default Hero;

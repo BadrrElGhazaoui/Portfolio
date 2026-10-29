@@ -1,6 +1,5 @@
-import React, { useRef, useEffect } from "react";
 import { Tilt } from "react-tilt";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { styles } from "../styles";
 import { github } from "../assets";
@@ -15,6 +14,7 @@ const ProjectCard = ({
   image,
   source_code_link,
   live_project_link,
+  live_project_label,
   trailer_link,
   animate,
 }) => {
@@ -22,131 +22,143 @@ const ProjectCard = ({
     <motion.div variants={animate}>
       <Tilt
         options={{
-          max: 45,
+          max: 7,
           scale: 1,
-          speed: 450,
+          speed: 350,
         }}
-        className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
+        className="group flex h-full flex-col rounded-2xl border border-navy/10 bg-white p-4 shadow-card transition-colors duration-300 hover:border-accent/40"
       >
-        <div className="relative w-full h-[230px]">
+        <div className="relative h-[220px] w-full overflow-hidden rounded-xl border border-navy/5 bg-[#eef2f7]">
           <img
             src={image}
-            alt="project_image"
-            className="w-full h-full object-contain rounded-2xl"
+            alt={name}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.02]"
           />
 
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer transition-all duration-300 hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]"
-            >
-              <img
-                src={github}
-                alt="source code"
-                className="w-1/2 h-1/2 object-contain"
-              />
+          {source_code_link && (
+            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+              <a
+                href={source_code_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${name} source code on GitHub`}
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-navy shadow-md transition-all duration-300 hover:scale-105 hover:bg-accent"
+              >
+                <img
+                  src={github}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-5 w-5 object-contain"
+                />
+              </a>
             </div>
-          </div>
+          )}
         </div>
 
-        <div className="mt-5">
-          <h3 className="text-white font-bold text-[24px]">{name}</h3>
-          <p className="mt-2 text-secondary text-[14px]">{description}</p>
+        <div className="mt-5 flex-1">
+          <h3 className="text-[21px] font-semibold tracking-tight text-navy">
+            {name}
+          </h3>
+          <p className="mt-2 min-h-[72px] text-sm leading-6 text-secondary">
+            {description}
+          </p>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tags.map((tag, index) => (
-            <p key={index} className={`text-[14px] ${tag.color}`}>
-              #{tag.name}
+            <p
+              key={index}
+              className="rounded-full border border-navy/10 bg-primary px-2.5 py-1 text-[11px] font-medium text-secondary"
+            >
+              {tag.name}
             </p>
           ))}
         </div>
 
-{(live_project_link || trailer_link) && (
-  <div className="mt-3 flex flex-wrap gap-3">
-    {live_project_link && (
-      <a href={live_project_link} target="_blank" rel="noopener noreferrer">
-        <button className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-all duration-300 
-hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]">
-          Live Project
-        </button>
-      </a>
-    )}
+        {(live_project_link || trailer_link) && (
+          <div className="mt-auto flex flex-wrap gap-3 pt-4">
+            {live_project_link && (
+              <a
+                href={live_project_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-primary min-h-10 rounded-lg px-4 py-2 text-xs"
+              >
+                {live_project_label || "Live Project"}
+              </a>
+            )}
 
-    {trailer_link && (
-      <a href={trailer_link} target="_blank" rel="noopener noreferrer">
-        <button className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md font-medium transition-all duration-300 
-hover:shadow-[0_0_10px_rgba(128,0,128,0.7)]">
-          ▶ Trailer
-        </button>
-      </a>
-    )}
-  </div>
-)}
+            {trailer_link && (
+              <a
+                href={trailer_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary min-h-10 rounded-lg px-4 py-2 text-xs"
+              >
+                ▶ Trailer
+              </a>
+            )}
+          </div>
+        )}
       </Tilt>
     </motion.div>
   );
 };
 
 const Works = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -200px 0px" }); // Adjust amount as needed
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
   return (
-    <section ref={ref}>
+    <div>
       <motion.div
         initial="hidden"
-        animate={mainControls}
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
         variants={{
           hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+          show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
         }}
       >
-        <h3 className={`${styles.sectionSubText} text-center`}>
-          Innovative Creations
-        </h3>
+        <h3 className={styles.sectionSubText}>Selected work</h3>
       </motion.div>
 
       <motion.div
         initial="hidden"
-        animate={mainControls}
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
         variants={{
           hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+          show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
         }}
       >
-        <h3 className={`${styles.sectionHeadText} text-center`}>Projects.</h3>
-      </motion.div>
-
-      <motion.div>
-        <div
-          className={`${
-            window.innerWidth <= 768
-              ? "grid grid-cols-1 gap-4 place-items-center"
-              : "flex flex-wrap gap-7"
-          }`}
-        >
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={`project-${index}`}
-              animate={
-                window.innerWidth <= 768
-                  ? {}
-                  : fadeIn("up", "spring", index * 0.5, 0.75)
-              }
-              {...project}
-            />
-          ))}
+        <div className="mt-2 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <h3 className={styles.sectionHeadText}>Projects</h3>
+          <p className="max-w-xl text-sm leading-6 text-secondary sm:text-right">
+            A few ways I bring business, technology, and creativity together.
+          </p>
         </div>
       </motion.div>
-    </section>
+
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.12 } },
+        }}
+        className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
+      >
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={`project-${index}`}
+            animate={fadeIn("up", "spring", 0, 0.55)}
+            {...project}
+          />
+        ))}
+      </motion.div>
+    </div>
   );
 };
 

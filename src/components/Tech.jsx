@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
-
-// Import all assets
+import { fadeIn } from "../utils/motion";
 import {
   python,
   trojan,
@@ -14,17 +12,9 @@ import {
   java,
   cplusplus,
   typescript,
-  docker,
-  tailwind,
   reactjs,
-  postgresql,
-  mongodb,
   threejs,
-  aws,
-  ubuntu,
   powershell,
-  azure,
-  cisco,
   virtualbox,
   kalilinux,
   wireshark,
@@ -34,228 +24,175 @@ import {
   mysql,
   linux,
   johntheripper,
-  photoshop,
-  premiere,
-  cinema4d,
+  encgsettat,
+  estice,
+  pedroPieces,
 } from "../assets";
 
-const programming = [
-  { name: "Python", icon: python },
-  { name: "html", icon: html }, 
-  { name: "mysql", icon: mysql },
-  { name: "Java", icon: java },
-  { name: "C++", icon: cplusplus },
-  { name: "JavaScript", icon: javascript },
-  { name: "TypeScript", icon: typescript },
-  { name: "Docker", icon: docker },
-  { name: "Tailwind CSS", icon: tailwind },
-  { name: "React JS", icon: reactjs },
-  { name: "PostgreSQL", icon: postgresql },
-  { name: "MongoDB", icon: mongodb },
-  { name: "Three.js", icon: threejs },
+const skillGroups = [
+  {
+    number: "01",
+    title: "Business & professional",
+    institutions: [
+      {
+        name: "ENCG Settat",
+        icon: encgsettat,
+        skills: ["Commerce & management foundations"],
+      },
+      {
+        name: "Pedro Pièces",
+        icon: pedroPieces,
+        skills: [
+          "Accounting support",
+          "Data entry & reporting",
+          "Excel & Word",
+          "Document organization",
+          "Email & appointment coordination",
+        ],
+      },
+      {
+        name: "ESTICE Lille",
+        icon: estice,
+        skills: [
+          "International management",
+          "French–English communication",
+          "Cross-cultural awareness",
+        ],
+      },
+    ],
+  },
+  {
+    number: "02",
+    title: "Development & data",
+    skills: [
+      { name: "Python", icon: python },
+      { name: "HTML", icon: html },
+      { name: "MySQL", icon: mysql },
+      { name: "Java", icon: java },
+      { name: "C++", icon: cplusplus },
+      { name: "JavaScript", icon: javascript },
+      { name: "TypeScript", icon: typescript },
+      { name: "React", icon: reactjs },
+      { name: "Three.js", icon: threejs },
+    ],
+  },
+  {
+    number: "03",
+    title: "Cybersecurity & IT",
+    skills: [
+      { name: "Tor", icon: tor, link: "https://moondiscoveries.com/2026-05-21-Tor/" },
+      { name: "Metasploit", icon: metasploit },
+      { name: "PowerShell", icon: powershell },
+      {
+        name: "Linux",
+        icon: linux,
+        link: "https://www.scribd.com/document/1060878547/Kali-Linux-Cheat-Sheet",
+      },
+      { name: "VirtualBox", icon: virtualbox },
+      { name: "Kali Linux", icon: kalilinux, link: "https://moondiscoveries.com/2026-05-22-Kali-Linux/" },
+      { name: "Hydra", icon: hydra },
+      { name: "Trojans", icon: trojan, link: "https://moondiscoveries.com/2026-06-01-Trojans/" },
+      { name: "Wireshark", icon: wireshark },
+      { name: "Nmap", icon: nmap, link: "https://moondiscoveries.com/2026-04-30-Nmap/" },
+      { name: "John the Ripper", icon: johntheripper },
+    ],
+  },
 ];
 
-const itTools = [
-  { name: "AWS", icon: aws },
-  { name: "Tor", icon: tor, link: "https://moondiscoveries.com/2026-05-21-Tor/" },
-  { name: "Ubuntu", icon: ubuntu },
-  { name: "Metasploit", icon: metasploit }, 
-  { name: "PowerShell", icon: powershell },
-  { name: "Azure", icon: azure },
-  { name: "Cisco", icon: cisco },
-  { name: "Linux", icon: linux , link : "https://www.scribd.com/document/1060878547/Kali-Linux-Cheat-Sheet" },
-  { name: "VirtualBox", icon: virtualbox },
-  { name: "Kali Linux", icon: kalilinux, link: "https://moondiscoveries.com/2026-05-22-Kali-Linux/" },
-  { name: "Hydra", icon: hydra },
-  { name: "Trojan", icon: trojan, link:"https://moondiscoveries.com/2026-06-01-Trojans/" },
-  { name: "Wireshark", icon: wireshark },
-  { name: "Nmap", icon: nmap, link: "https://moondiscoveries.com/2026-04-30-Nmap/" },
-  { name: "John the Ripper", icon: johntheripper },
-];
-
-const contentProduction = [
-  { name: "Photoshop", icon: photoshop },
-  { name: "Premiere Pro", icon: premiere },
-  { name: "Cinema 4D", icon: cinema4d },
-];
-
-const Tech = () => {
-  const [rows, setRows] = useState({
-    programming: [],
-    itTools: [],
-    contentProduction: [],
-  });
-
-  const ref = useRef(null);
-  const isInView = useInView(ref, { 
-    once: true,
-    amount: 0.2
-  });
-  const mainControls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      mainControls.start("visible");
-    }
-  }, [isInView, mainControls]);
-
-  const calculateRows = (width, techArray) => {
-    let dynamicRows = [];
-    let startIndex = 0;
-    let rowSize = 6;
-
-    if (width < 500) {
-      dynamicRows = [
-        techArray.slice(0, 3),
-        techArray.slice(3, 5),
-        techArray.slice(5, 8),
-        techArray.slice(8, 10),
-      ];
-    } else {
-      while (startIndex < techArray.length) {
-        const endIndex = startIndex + rowSize;
-        dynamicRows.push(techArray.slice(startIndex, endIndex));
-        startIndex += rowSize;
-        rowSize = rowSize === 6 ? 5 : 6;
-      }
-    }
-
-    return dynamicRows;
-  };
-
-  useEffect(() => {
-    const calculateRowsForAllCategories = () => {
-      const rowsData = {
-        programming: calculateRows(window.innerWidth, programming),
-        itTools: calculateRows(window.innerWidth, itTools),
-        contentProduction: calculateRows(window.innerWidth, contentProduction),
-      };
-      setRows(rowsData);
-    };
-
-    calculateRowsForAllCategories();
-
-    const handleResize = () => {
-      calculateRowsForAllCategories();
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const hexagonVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
-      scale: 1, 
-      transition: { 
-        delay: Math.random() * 1.5, 
-        duration: 0.5, 
-        type: "spring" 
-      } 
-    },
-    hover: {
-      scale: 1.05,
-      zIndex: 2,
-      transition: { duration: 0.3 }
-    }
-  };
-
-  const renderCategory = (categoryName, categoryRows) => (
-    <motion.div
-      key={categoryName}
-      className="category-container"
-      initial="hidden"
-      animate={mainControls}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
-      }}
-    >
-      <motion.h2
-        className="category-title top"
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-        style={{
-          fontFamily: "'', cursive",
-          fontSize: "26px",
-          background: "linear-gradient(90deg, #83A9F2, #F4F6FC)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          textFillColor: "transparent",
-          filter: "drop-shadow(0 0 10px #83A9F2)",
-        }}
-      >{`<${categoryName}>`}</motion.h2>
-      <div className="honeycomb-grid">
-        {categoryRows?.map((row, rowIndex) => (
-          <div
-            key={`${categoryName}-row-${rowIndex}`}
-            className={`honeycomb-row ${rowIndex % 2 === 1 ? "staggered-row" : ""}`}
-          >
-            {row.map((tech) => (
-              <motion.div
-                key={tech.name}
-                className="hexagon"
-                variants={hexagonVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-              >
-                {tech.link ? (
-    
-      <a href={tech.link}
-      target="_blank"
-      title= {tech.name}
-      rel="noopener noreferrer" 
-      style={{ display: "flex",  alignItems: "center",
-      justifyContent: "center", width: "100%", height: "100%" }}
-    >
-      <img src={tech.icon} alt={tech.name} style={{ userSelect: "none" }} draggable="false"/>
-    </a>
-  ) : (
-    <img src={tech.icon} alt={tech.name} style={{ userSelect: "none" }} draggable="false"/>
-  )}
-</motion.div>
-            ))}
-          </div>
-        ))}
+const Tech = () => (
+  <div className="skills">
+    <motion.div variants={fadeIn("up", "spring", 0.1, 0.65)}>
+      <p className={styles.sectionSubText}>A practical toolkit</p>
+      <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <h2 className={styles.sectionHeadText}>Skills &amp; tools</h2>
+        <p className="max-w-xl text-sm leading-6 text-secondary sm:text-right">
+          A mix of business foundations, workplace experience, and technical
+          skills shaped by study and hands-on practice.
+        </p>
       </div>
-      <motion.h2
-        className="category-title bottom"
-        variants={{
-          hidden: { opacity: 0, y: 20 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-        }}
-        style={{
-          fontFamily: "'', cursive",
-          fontSize: "26px",
-          background: "linear-gradient(90deg, #83A9F2, #F4F6FC)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          textFillColor: "transparent",
-          filter: "drop-shadow(0 0 10px #83A9F2)",
-        }}
-      >{`</${categoryName}>`}</motion.h2>
     </motion.div>
-  );
 
-  return (
-    <section className="skills" ref={ref}>
-      <div className="container">
-        <motion.div variants={textVariant()}>
-          <p className={`${styles.sectionSubText} text-center`}>Technical Proficiencies</p>
-          <h2 className={`${styles.sectionHeadText} text-center`}>Skills.</h2>
+    <div className="mt-8">
+      {skillGroups.map((group, index) => (
+        <motion.div
+          key={group.number}
+          variants={fadeIn("up", "spring", index * 0.1, 0.65)}
+          className="skill-group"
+        >
+          <div className="flex items-start gap-4">
+            <span className="pt-1 text-xs font-medium tracking-widest text-accent">
+              {group.number}
+            </span>
+            <h3 className="text-sm font-semibold text-navy sm:text-base">
+              {group.title}
+            </h3>
+          </div>
+
+          {group.institutions ? (
+            <ul className="business-skill-list">
+              {group.institutions.map((institution) => (
+                <li key={institution.name} className="business-skill-card">
+                  <span className="business-skill-logo">
+                    <img
+                      src={institution.icon}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="business-skill-source">{institution.name}</span>
+                    <span className="business-skill-description">
+                      {institution.skills.join(" · ")}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="flex flex-wrap gap-2.5">
+              {group.skills.map((skill) => {
+                const content = (
+                  <>
+                    {skill.icon ? (
+                      <span className="skill-icon">
+                        <img
+                          src={skill.icon}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-contain"
+                        />
+                      </span>
+                    ) : null}
+                    <span>{skill.name}</span>
+                  </>
+                );
+
+                return (
+                  <li key={skill.name}>
+                    {skill.link ? (
+                      <a
+                        href={skill.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="skill-chip"
+                      >
+                        {content}
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      <span className="skill-chip">{content}</span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </motion.div>
-        {renderCategory("programming", rows.programming)}
-        {renderCategory("itTools", rows.itTools)}
-        {renderCategory("contentProduction", rows.contentProduction)}
-      </div>
-    </section>
-  );
-};
+      ))}
+    </div>
+  </div>
+);
 
 export default SectionWrapper(Tech, "skills");

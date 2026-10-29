@@ -1,277 +1,264 @@
-"use client"
-import { useRef, useState, useCallback, useEffect } from "react"
-import { motion } from "framer-motion"
-import { Toaster, toast } from "react-hot-toast"
-import Confetti from "react-confetti"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faEnvelope,
+  faPaperPlane,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faWhatsapp,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
-import { styles } from "../styles"
-import { SectionWrapper } from "../hoc"
-import { slideIn } from "../utils/motion"
+import { styles } from "../styles";
+import { SectionWrapper } from "../hoc";
+import { slideIn } from "../utils/motion";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser, faEnvelope, faComment, faPaperPlane, faSpinner, faPhone } from "@fortawesome/free-solid-svg-icons"
-import { faInstagram, faWhatsapp, faYoutube } from "@fortawesome/free-brands-svg-icons"
+const socialLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/badr-el-ghazaoui",
+    icon: faLinkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/BadrrElGhazaoui",
+    icon: faGithub,
+  },
+  {
+    label: "Instagram",
+    href: "https://instagram.com/badr.elghazaoui",
+    icon: faInstagram,
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@Badr-El-Ghazaoui",
+    icon: faYoutube,
+  },
+];
 
 const Contact = () => {
-  const formRef = useRef()
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState({ type: "idle", message: "" });
 
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [showConfetti, setShowConfetti] = useState(false)
-  const [windowDimension, setWindowDimension] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  })
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm((currentForm) => ({ ...currentForm, [name]: value }));
+  };
 
-  const detectSize = () => {
-    setWindowDimension({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
-  }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus({ type: "loading", message: "" });
 
-  useEffect(() => {
-    window.addEventListener("resize", detectSize)
-    return () => {
-      window.removeEventListener("resize", detectSize)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (showConfetti) {
-      document.body.style.overflowX = "hidden"
-    } else {
-      document.body.style.overflowX = ""
+    const accessKey = import.meta.env.VITE_WEB3FORMS_KEY;
+    if (!accessKey) {
+      console.error("Contact form is missing VITE_WEB3FORMS_KEY.");
+      setStatus({
+        type: "error",
+        message: "The contact form is temporarily unavailable. Please email me directly.",
+      });
+      return;
     }
 
-    return () => {
-      document.body.style.overflowX = ""
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `New message from ${form.name} via portfolio`,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || `Request failed (${response.status}).`);
+      }
+
+      setForm({ name: "", email: "", message: "" });
+      setStatus({ type: "success", message: "Thanks — your message has been sent." });
+    } catch (error) {
+      console.error("Contact form submission failed:", error);
+      setStatus({
+        type: "error",
+        message: "Your message could not be sent. Please email me directly.",
+      });
     }
-  }, [showConfetti])
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setForm({ ...form, [name]: value })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill all fields before submitting. ⚠️", {
-        duration: 3000,
-        position: "bottom-right",
-      })
-      return
-    }
-
-    setLoading(true)
-
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
-        name: form.name,
-        email: form.email,
-        message: form.message,
-        subject: `New message from ${form.name} via portfolio`,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false)
-        if (data.success) {
-          setSuccess(true)
-          setForm({ name: "", email: "", message: "" })
-          toast.success("Message sent successfully!", {
-            duration: 3000,
-            position: "bottom-right",
-          })
-          setShowConfetti(true)
-          setTimeout(() => {
-            setSuccess(false)
-            setShowConfetti(false)
-          }, 5000)
-        } else {
-          throw new Error(data.message)
-        }
-      })
-      .catch((error) => {
-        setLoading(false)
-        console.error(error)
-        toast.error("Something went wrong. Please try again.", {
-          duration: 3000,
-          position: "bottom-right",
-        })
-      })
-  }
-
-  const handleConfettiComplete = useCallback(() => {
-    setShowConfetti(false)
-  }, [])
+  };
 
   return (
-<div className="mt-12 flex justify-center overflow-hidden">
-      <Toaster />
-      {showConfetti && (
-        <Confetti
-          width={windowDimension.width}
-          height={windowDimension.height}
-          recycle={false}
-          numberOfPieces={windowDimension.width > 768 ? 200 : 100}
-          onConfettiComplete={handleConfettiComplete}
-        />
-      )}
-      <motion.div
-        variants={slideIn("left", "tween", 0.2, 1)}
-        className="w-full max-w-2xl bg-tertiary/80 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)]"
+    <div className="mt-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+      <motion.aside
+        variants={slideIn("right", "tween", 0.1, 0.65)}
+        className="contact-intro flex flex-col justify-between rounded-3xl p-7 sm:p-9"
       >
-        <div className="flex justify-between items-center mb-4">
-          <p className={styles.sectionSubText}>Get in touch</p>
-          
-          <a href="tel:+33776450955"
-          className="text-purple-400 hover:text-purple-300 transition-all duration-300 flex items-center gap-2 hover:gap-3 group"
-            >
-            <FontAwesomeIcon icon={faPhone} className="group-hover:rotate-12 transition-transform duration-300" />
-            <span className="font-medium">+33776450955</span>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+            Get in touch
+          </p>
+          <h3 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
+            Let&apos;s start a conversation.
+          </h3>
+          <p className="mt-4 max-w-md text-sm leading-7 text-white/70">
+            Have an opportunity, a question, or an idea to share? I&apos;d be
+            glad to hear from you.
+          </p>
+        </div>
+
+        <div className="mt-10 space-y-3">
+          <a
+            href="mailto:badr@badrelghazaoui.com"
+            className="contact-detail"
+          >
+            <span className="contact-detail-icon">
+              <FontAwesomeIcon icon={faEnvelope} />
+            </span>
+            <span>
+              <span className="contact-detail-label">Email</span>
+              <span className="contact-detail-value">badr@badrelghazaoui.com</span>
+            </span>
+            <FontAwesomeIcon icon={faArrowRight} className="ml-auto text-sm text-white/60" />
+          </a>
+          <a href="tel:+33776450955" className="contact-detail">
+            <span className="contact-detail-icon">
+              <FontAwesomeIcon icon={faPhone} />
+            </span>
+            <span>
+              <span className="contact-detail-label">Phone</span>
+              <span className="contact-detail-value">+33 7 76 45 09 55</span>
+            </span>
+            <FontAwesomeIcon icon={faArrowRight} className="ml-auto text-sm text-white/60" />
+          </a>
+          <a
+            href="https://wa.me/33776450955"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-detail"
+          >
+            <span className="contact-detail-icon">
+              <FontAwesomeIcon icon={faWhatsapp} />
+            </span>
+            <span>
+              <span className="contact-detail-label">WhatsApp</span>
+              <span className="contact-detail-value">Send me a message</span>
+            </span>
+            <FontAwesomeIcon icon={faArrowRight} className="ml-auto text-sm text-white/60" />
           </a>
         </div>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
 
-        <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row gap-8">
-            <div className="flex-1">
-              <label className="flex flex-col">
-                <span className="text-white font-medium mb-4 flex items-center gap-2">
-                  <FontAwesomeIcon icon={faUser} className="text-purple-400" />
-                  Name
-                </span>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-className="w-full min-w-0 bg-black-100/50 backdrop-blur-sm py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none border-2 border-white/20 font-medium 
-transition-all duration-300 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 focus:bg-black-100/70 hover:border-white/30"
-                />
-              </label>
-            </div>
-            <div className="flex-1">
-              <label className="flex flex-col">
-                <span className="text-white font-medium mb-4 flex items-center gap-2">
-                  <FontAwesomeIcon icon={faEnvelope} className="text-purple-400" />
-                  Email
-                </span>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  placeholder="Your email"
-className="w-full min-w-0 bg-black-100/50 backdrop-blur-sm py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none border-2 border-white/20 font-medium 
-transition-all duration-300 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 focus:bg-black-100/70 hover:border-white/30"
-                />
-              </label>
-            </div>
+        <div className="mt-9 border-t border-white/15 pt-6">
+          <p className="text-xs font-medium uppercase tracking-[0.16em] text-white/60">
+            Find me online
+          </p>
+          <div className="mt-4 flex gap-3">
+            {socialLinks.map(({ label, href, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="contact-social-link"
+              >
+                <FontAwesomeIcon icon={icon} />
+              </a>
+            ))}
           </div>
-          <label className="flex flex-col">
-            <span className="text-white font-medium mb-4 flex items-center gap-2">
-              <FontAwesomeIcon icon={faComment} className="text-purple-400" />
-              Message
-            </span>
+        </div>
+      </motion.aside>
+
+      <motion.div
+        variants={slideIn("left", "tween", 0.15, 0.65)}
+        className="contact-form-card rounded-3xl p-6 sm:p-9"
+      >
+        <div>
+          <p className={styles.sectionSubText}>Send a message</p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-navy sm:text-3xl">
+            How can I help?
+          </h3>
+          <p className="mt-2 text-sm leading-6 text-secondary">
+            I&apos;ll get back to you as soon as I can.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-5">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="contact-field">
+              <span>Name</span>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Your name"
+                autoComplete="name"
+                required
+              />
+            </label>
+            <label className="contact-field">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+              />
+            </label>
+          </div>
+
+          <label className="contact-field">
+            <span>Message</span>
             <textarea
-              rows={7}
+              rows={5}
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Hey Badr, love the website! I'd like to chat about some opportunities you might like! 🎉"
-              className="bg-black-100/50 backdrop-blur-sm py-4 px-6 placeholder:text-secondary text-white rounded-xl outline-none border-2 border-white/20 font-medium transition-all duration-300 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 focus:bg-black-100/70 hover:border-white/30 resize-none"
+              placeholder="Tell me a little about what you have in mind..."
+              required
             />
           </label>
 
-          <button
-            type="submit"
-            className="relative bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden group"
-            disabled={loading}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-            {loading ? (
-              <FontAwesomeIcon icon={faSpinner} spin className="text-xl" />
-            ) : success ? (
-              <>
-                <span>Sent Successfully</span>
-                <FontAwesomeIcon
-                  icon={faPaperPlane}
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                />
-              </>
-            ) : (
-              <>
-                <span>Send Message</span>
-                <FontAwesomeIcon
-                  icon={faPaperPlane}
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                />
-              </>
-            )}
-          </button>
+          {status.message && (
+            <p
+              role={status.type === "error" ? "alert" : "status"}
+              className={`text-sm leading-6 ${
+                status.type === "error" ? "text-red-700" : "text-navy"
+              }`}
+            >
+              {status.message}
+            </p>
+          )}
 
-          <div className="flex items-center gap-3 mt-2">
-            <div className="h-px flex-1 bg-white/10" />
-            <span className="text-xs text-gray-400">or reach me directly</span>
-            <div className="h-px flex-1 bg-white/10" />
-          </div>
-          <div className="flex justify-center gap-6">
-           
-              <a
-                href="https://wa.me/+33776450955"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-green-500 hover:text-green-400 hover:scale-110 transition-all duration-300"
+          <div className="flex flex-col gap-4 border-t border-navy/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs leading-5 text-secondary">
+              Your details are only used to reply to your message.
+            </p>
+            <button
+              type="submit"
+              disabled={status.type === "loading"}
+              className="button-primary min-w-[170px] disabled:cursor-wait disabled:opacity-65"
             >
-              <FontAwesomeIcon icon={faWhatsapp} className="text-2xl" />
-            </a>
-            
-              <a
-                href="https://instagram.com/badr.elghazaoui"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-pink-500 hover:text-pink-400 hover:scale-110 transition-all duration-300"
-            >
-              <FontAwesomeIcon icon={faInstagram} className="text-2xl" />
-            </a>
-   <a
-  href="https://www.youtube.com/@Badr-El-Ghazaoui"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="YouTube"
-  className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-red-500 hover:text-red-500 
-hover:scale-110 transition-all duration-300"
->
-  <FontAwesomeIcon icon={faYoutube} className="text-2xl" />
-</a>         
-              <a
-                href="mailto:badr@badrelghazaoui.com"
-              aria-label="Email"
-              className="w-12 h-12 rounded-full bg-black-100/50 border-2 border-white/20 flex items-center justify-center text-white hover:border-purple-500 hover:text-purple-400 hover:scale-110 transition-all duration-300"
-            >
-              <FontAwesomeIcon icon={faEnvelope} className="text-2xl" />
-            </a>
+              <span>
+                {status.type === "loading" ? "Sending..." : "Send message"}
+              </span>
+              <FontAwesomeIcon icon={faPaperPlane} aria-hidden="true" />
+            </button>
           </div>
         </form>
       </motion.div>
-
     </div>
-  )
-}
+  );
+};
 
-export default SectionWrapper(Contact, "contact")
+export default SectionWrapper(Contact, "contact");

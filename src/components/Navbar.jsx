@@ -1,168 +1,113 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-
-import { styles } from "../styles";
 import { navLinks } from "../constants";
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Styling for the menu button and navicon
-  const menuIconStyle = {
-    position: 'relative',
-    width: '28px',
-    height: '20px',
-    display: 'flex',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    flexDirection: 'column',
-    alignItems: 'center',
-  };
-
-  const barCommonStyle = {
-    background: 'white',
-    display: 'block',
-    height: '2px',
-    width: '18px',
-    borderRadius: '2px',
-    position: 'absolute',
-    transition: 'all 0.2s ease-out',
-  };
-
-  const topBarStyle = {
-    ...barCommonStyle,
-    top: toggle ? '50%' : '5px',
-    transform: toggle ? 'rotate(-45deg)' : 'none',
-  };
-
-  const middleBarStyle = {
-    ...barCommonStyle,
-    opacity: toggle ? 0 : 1,
-    top: '50%',
-    transition: 'opacity 0.2s ease-out',
-  };
-
-  const bottomBarStyle = {
-    ...barCommonStyle,
-    top: toggle ? '50%' : '15px',
-    transform: toggle ? 'rotate(45deg)' : 'none',
-  };
+  const closeMenu = () => setToggle(false);
 
   return (
-    <nav
-      className={`${
-        styles.paddingX
-      } w-full flex items-center py-5 fixed top-0 z-20 transition-all duration-300 ${
-        scrolled ? "bg-primary shadow-lg" : "bg-transparent"
+    <header
+      className={`fixed inset-x-0 top-0 z-30 border-b transition-all duration-300 ${
+        scrolled
+          ? "border-navy/10 bg-white/95 shadow-[0_12px_35px_rgba(20,36,60,0.08)] backdrop-blur-xl"
+          : "border-transparent bg-white/80 backdrop-blur-lg"
       }`}
     >
-      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-        <Link
-          to='/'
-          className='flex items-center gap-2'
-          onClick={() => {
-            setActive("");
-            window.scrollTo(0, 0);
-          }}
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex h-[82px] max-w-7xl items-center justify-between px-6 sm:px-10 lg:px-16"
+      >
+        <a
+          href="#top"
+          onClick={closeMenu}
+          className="group flex items-center gap-3"
+          aria-label="Badr El Ghazaoui, home"
         >
-          <motion.p 
-            className='text-white text-[18px] font-bold cursor-pointer flex items-center'
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span 
-              className='block' 
-              style={{
-                fontFamily: "'Dancing Script', cursive",
-                fontSize: "26px",
-                color: "white",
-              }} 
-            >
-              {"</"}Badr El Ghazaoui{">"}
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-sm font-semibold tracking-tight text-accent transition-colors group-hover:bg-accent/15">
+            BG
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="text-sm font-semibold tracking-wide text-navy sm:text-base">
+              Badr El Ghazaoui
             </span>
-          </motion.p>
-        </Link>
+            <span className="mt-1 text-[10px] uppercase tracking-[0.18em] text-secondary">
+              Portfolio
+            </span>
+          </span>
+        </a>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className="hidden items-center gap-6 lg:flex xl:gap-8">
           {navLinks.map((nav) => (
-            <motion.li
-              key={nav.id}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: nav.id * 0.1 }}
-            >
+            <li key={nav.id}>
               <a
                 href={`#${nav.id}`}
-                className={`${
-                  active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer transition-colors duration-300`}
-                onClick={() => setActive(nav.title)}
+                className="nav-link text-[13px] font-medium text-secondary transition-colors hover:text-navy xl:text-sm"
               >
                 {nav.title}
               </a>
-            </motion.li>
+            </li>
           ))}
         </ul>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          {/* Menu Icon Toggle */}
-          <div style={menuIconStyle} onClick={() => setToggle(!toggle)}>
-            <span style={topBarStyle}></span>
-            <span style={middleBarStyle}></span>
-            <span style={bottomBarStyle}></span>
-          </div>
+        <button
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-navy/10 text-navy transition-colors hover:border-accent/40 hover:bg-navy/5 lg:hidden"
+          aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={toggle}
+          aria-controls="mobile-navigation"
+          onClick={() => setToggle((isOpen) => !isOpen)}
+        >
+          <span className="relative flex h-4 w-5 flex-col justify-between">
+            <span
+              className={`h-0.5 w-full rounded-full bg-current transition-transform ${
+                toggle ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full rounded-full bg-current transition-opacity ${
+                toggle ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-full rounded-full bg-current transition-transform ${
+                toggle ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
+      </nav>
 
-          {/* Menu Items */}
-          <motion.div
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: toggle ? 1 : 0, scale: toggle ? 1 : 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-              {navLinks.map((nav) => (
-                <motion.li
-                  key={nav.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: nav.id * 0.1 }}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title ? "text-white" : "text-secondary"
-                  }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
+      {toggle && (
+        <div
+          id="mobile-navigation"
+          className="border-t border-navy/10 bg-white/98 px-6 py-5 shadow-2xl backdrop-blur-xl sm:px-10 lg:hidden"
+        >
+          <ul className="mx-auto flex max-w-7xl flex-col gap-1">
+            {navLinks.map((nav) => (
+              <li key={nav.id}>
+                <a
+                  href={`#${nav.id}`}
+                  onClick={closeMenu}
+                  className="block rounded-lg px-3 py-3 text-sm font-medium text-secondary transition-colors hover:bg-navy/5 hover:text-navy"
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+                  {nav.title}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-    </nav>
+      )}
+    </header>
   );
 };
 
